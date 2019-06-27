@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>My Account</ion-title>
+    </ion-navbar>
+</ion-header>
+  
+  <ion-content no-padding>
+    <div class="content-class-main">
+      <div class="content-class-sub">
+  
+          <div class="background-div">
+              <img class="background-img"  src="../../assets/imgs/cover.jpg">
+          </div>
+          <div class="mainDiv">
+              <div class="subDiv">
+                  <div class="circleDiv">
+                      <img class="cImg" src="../../assets/imgs/profile.jpg">
+                      <!-- Icon  --> 
+                      <div class="iconDiv">
+                        <div class="iconMainDiv">
+                          <div>
+                            <div class="iconSubDiv" (click)="uploadCam()">
+                              <ion-icon class="iconStyle" name="md-create"></ion-icon>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Icon End  --> 
+                  </div>
+              </div>
+          </div>
+  
+      </div>
+  
+      <div class="item-div">
+  
+        <ion-item>
+          <ion-label stacked>Name</ion-label>
+          <ion-input type="text" value="Denis Manning"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Email address</ion-label>
+          <ion-input type="email" value="denismanning@gmail.com"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Address</ion-label>
+          <ion-input type="text" value="310 bhawarkuva colony"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input type="password" value="123456"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+        </ion-item>
+  
+        <ion-item no-lines>
+          <div item-left>Landscape</div>
+          <div item-right class="starItem">
+              <ion-icon class="staricon" name="star"></ion-icon>
+              <ion-icon class="staricon" name="star"></ion-icon>
+              <ion-icon class="staricon" name="star"></ion-icon>
+              <ion-icon class="staricon" name="star-outline"></ion-icon>
+              <ion-icon class="staricon" name="star-outline"></ion-icon>
+          </div>
+  
+        </ion-item>
+  
+      </div>
+  
+    </div>
+  
+  </ion-content>
+  <ion-footer class="footer-class">
+      <button class="footer-button" ion-button full>Full Button</button>
+  </ion-footer>
