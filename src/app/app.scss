@@ -1,22 +1,45 @@
-// http://ionicframework.com/docs/theming/
+/* For all Toast */
+// .normalToast{
+//     .toast-wrapper{
+//         padding: 20px 10px 10px 10px !important;
+//         background: transparent !important;
+//     }
+//     .toast-message { 
+//         border-radius: 0.65rem !important; 
+//         background: color($colors, lightGreen);
+//         color: color($colors,dark);
+//         font-weight: 500;
+//         letter-spacing: 1.2px;
+//     }
+// }
+// .errorToast{
+//     .toast-wrapper{
+//         padding: 20px 10px 10px 10px !important;
+//         background: transparent !important;
+//     }
+//     .toast-message { 
+//         border-radius: 0.65rem !important; 
+//         background: color($colors, lightRed);
+//         color: color($colors,dark);
+//         font-weight: 500;
+//         letter-spacing: 1.2px;
+//     }
+// }
+
+/* For all Toast */
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
 .scroll-content {
-    padding-bottom: 15px !important;
+    // padding-bottom: 15px !important;
+    padding-bottom: 0 !important;
     border-color: transparent !important;
-   // font-size: 11px !important;
-    // border-top: 1px solid color($colors, secondary) !important;
 }
+ion-footer {
+    &.footer-md::before {
+        background-image: none;
+    }
+}
+
+.button-md.activated {
+    background: color($colors,dark) !important;
+  } 

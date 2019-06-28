@@ -1,0 +1,28 @@
+<ion-content no-padding>
+  <div class="content-div">
+
+    <div class="logo-bacground-div">
+      <!-- <img class="logo-img" src="../../assets/imgs/loading.gif" style="width: 100%"> -->
+    </div>
+
+    <div class="item-div">
+        <ion-item no-lines class="custom-item">
+          <ion-input class="custom-input" type="text" placeholder="Verification code"></ion-input>
+        </ion-item>
+    </div>
+
+    <div class="custom-text-div">
+      Please Enter your verification code.
+    </div>
+
+    <div class="resend-btn">
+      <span *ngIf="value == 0 " class="resend-span" (click)="resendButtonClick()">RESEND</span>
+      <span *ngIf="value != 0 " class="count-down">{{value? value.toString().length >1 ? '00:'+value : '00:0'+value : "00:00"}}</span>
+    </div>
+
+  </div>
+
+</ion-content>
+<ion-footer class="custom-footer" no-border>
+    <button class="footer-button" ion-button block (click)="clickContinue()">Continue</button>
+</ion-footer>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>item-details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding class="content-class">
+    <div class="content-div">
+        <div class="content-sub-div">
+            <span>Item-1</span>
+        </div>
+
+        <div>
+          <ion-item no-lines no-padding class="details-item" *ngFor="let item of allItems;">
+              <div item-start class="details-div">
+                  <h2 class="details-h2">Full hand</h2>
+                  <span style="padding-bottom: 0px;font-size: 20px;">200/-</span>
+              </div>
+              <div item-end>
+                  <ion-icon class="details-icon" name="md-add-circle"></ion-icon>
+                </div>
+          </ion-item>
+
+        </div>
+
+    </div>
+
+</ion-content>

@@ -1,3 +1,56 @@
 page-home {
+    .content-div{
+        padding: 15px 12px 0 15px; 
+        height: 10vh;
+        background: color($colors,backgroundOne);
+    }
+    .content-div-two{
+        height: calc(100vh - 18vh); 
+        position: absolute; 
+        bottom: 0; 
+        right: 0; 
+        left: 0;
+    }
 
+    .sub-content{
+        background: color($colors,backgroundOne);
+    }
+    .item-class{
+        width: 95vw;
+        margin: 0 auto;
+        padding: 0 3vw; 
+        box-shadow: 0px 0px 7px 0px; 
+        border-radius: 5px;
+        margin-bottom: 14px;
+    }
+    .item-img{
+        height: 18vw;
+        width: 18vw;
+        border: 1px solid color($colors,backgroundOne);;
+        object-fit: cover;
+    }
+    .item-h2{
+        padding: 0 0 2vw 0;
+        font-weight: bold;
+        letter-spacing: 1.3px;
+    }
+    .item-p{
+        font-size: 11px; 
+        letter-spacing: 1px;
+    }
+
+    .defaultBadge{
+        padding: 7px 12px;
+        letter-spacing: 1.2px;
+        background:  color($colors,backgroundTwo) !important;
+        color: color($colors,dark) !important;
+        border: 1px solid color($colors,backgroundThree) !important;
+
+    }
+    .activeBadgeclass{
+        padding: 7px 12px;
+        letter-spacing: 1.2px;
+        background:  color($colors,secondary) !important;
+        border: 1px solid color($colors,secondary) !important;
+    }
 }
