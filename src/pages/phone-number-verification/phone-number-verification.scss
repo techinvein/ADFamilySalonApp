@@ -1,5 +1,5 @@
 page-phone-number-verification {
-    .content-div{
+    /*.content-div{
         background: color($colors,backgroundOne);height: 100%;width: 100%
     }
     .logo-bacground-div{
@@ -65,5 +65,59 @@ page-phone-number-verification {
         height: 100%;
         background: color($colors,dark);
         letter-spacing: 1.2px;
+    }
+    */
+
+    .content-div{display:flex;width:100%;flex-direction:column;text-align: center;margin: 10vw 0;}
+    .sub-one{
+        font-size: 18px; font-weight: bold;padding: 0 10vw; letter-spacing: 1.2px;
+    }
+    .sub-two{ padding: 10vw 0 0 0;}
+    .sub-logo{ height: 45vw;width: 45vw; }
+    .sub-three{font-size: 14px; font-weight: bold;padding: 0 10vw; letter-spacing: 1.2px;}
+    .sub-four{font-size: 11px;color:color($colors,textcolorOne); font-weight: 300; letter-spacing: 1px;padding: 4vw 10vw;}
+    .sub-span{
+        color:color($colors,danger);
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .sub-five{font-size: 12px; font-weight: 500; letter-spacing: 1.2px;padding: 4vw 10vw;}
+    .item-class{
+        border: .5px solid color($colors,danger) !important; border-left: 0!important;border-right: 0!important;border-top: 0!important;
+        .item-inner{
+            padding-right: 0 !important;
+            font-size: 16px !important;
+            //color: color($colors, danger) !important;
+        }
+        ::placeholder {
+            font-size: 13px; //sets placeholder font size
+            color:color($colors,textcolorOne);
+            letter-spacing: 1.2px;
+        }
+    }
+    .input-class{
+        margin-right: 0 !important;
+        .text-input{
+            text-align: center !important;
+            font-weight: 400 !important;
+            font-size: 22px !important;
+            color:color($colors,danger);
+            letter-spacing: 2px;
+            padding-left: 2vw;
+
+        }
+    }
+    .sub-six{padding: 15vw 10vw;}
+    .sub-six-btn{
+        text-transform: none !important;font-size: 16px;height: 12vw;width: 32vw;letter-spacing: 1.2px;
+        background: color($colors,danger);
+    }
+
+    //Universion button style
+    .button-md.activated{
+        background: color($colors,danger) !important;
+    }
+    .button-ios.activated{
+        background: color($colors,danger) !important;
     }
 }

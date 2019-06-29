@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'phone-number-verification.html',
 })
 export class PhoneNumberVerificationPage {
-  value:number=60;
+  value:number=30;
 
   constructor(
     public navCtrl: NavController, 
@@ -24,12 +24,17 @@ export class PhoneNumberVerificationPage {
       }, 1000);
   }
 
-  resendButtonClick(){
-    alert("Code successfully sent to your mobile number");
+  // resendButtonClick(){
+  //   alert("Code successfully sent to your mobile number");
+  // }
+  resendClick(){
+    this.value = 30;
   }
 
   clickContinue(){
     this.navCtrl.push("AddPersonalDetailsPage");
   }
+
+
 
 }
