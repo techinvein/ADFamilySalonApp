@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar >
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,20 +7,39 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content no-padding>
+<ion-content no-padding class="content-first">
     <div class="content-div">
-      <ion-badge [ngClass]="maleClass ? 'activeBadgeclass' : 'defaultBadge'" (click)="clickGender('male')">Male</ion-badge>
-      <ion-badge  [ngClass]="femaleClass ? 'activeBadgeclass' : 'defaultBadge'" (click)="clickGender('female')">Female</ion-badge>
+      <div class="slider-div">
+        <ion-slides pager=true>
+            <ion-slide>
+              <img item-start class="cc-img"  src="./assets/imgs/hair.jpg">
+            </ion-slide>
+            <ion-slide>
+              <img item-start  src="./assets/imgs/hair.jpg">
+            </ion-slide>
+            <ion-slide>
+              <img item-start  src="./assets/imgs/hair.jpg">
+            </ion-slide>
+          </ion-slides>
+      </div>
+
+      <div class="badge-div">
+          <ion-badge [ngClass]="maleClass ? 'activeBadgeclass' : 'defaultBadge'" (click)="clickGender('male')">Male</ion-badge>
+          <ion-badge  [ngClass]="femaleClass ? 'activeBadgeclass' : 'defaultBadge'" (click)="clickGender('female')">Female</ion-badge>
+      </div>
+    
     </div>
+
     <div class="content-div-two">
       <ion-content no-padding class="sub-content">
-        <ion-list no-lines padding-top>
-          <ion-item no-padding no-lines text-wrap class="item-class" *ngFor="let details of showDetails; let i=index;" (click)="goToItemDetails()">
-            <img item-start class="item-img" src="./assets/imgs/hair.jpg">
-            <h2 class="item-h2">Cher</h2>
-            <p class="item-p">Haircut, Styling, Coloring, Straightening, Hairspa, Touch up</p>
-          </ion-item>
-        </ion-list>
+        <div class="content-two-item-maindiv">
+            <div class=item-div  *ngFor="let item of showDetails; let i-index; ">
+                <img class="item-div-img"  src="./assets/imgs/hair.jpg">
+                <div class="item-div-title">{{item.name}}</div>
+            </div>
+            
+        </div>
       </ion-content>
     </div>
+
 </ion-content>

@@ -1,56 +1,62 @@
 page-home {
+    .content-first{
+        background: color($colors,dark);
+    }
+    .slider-div{
+        height:30vh;  
+        // margin:1vh 0 0 0;
+        margin: 1vw 0 3vw 0;
+    }
+    .cc-img{
+        max-width: 100%; height: 30vh; width: 100%;
+        max-height: 100%; object-fit: cover;
+    }
+
+
     .content-div{
-        padding: 15px 12px 0 15px; 
-        height: 10vh;
-        background: color($colors,backgroundOne);
+    //    height: 32vh; 
+       height: 37vh;
+       background: color($colors,dark);
     }
     .content-div-two{
-        height: calc(100vh - 18vh); 
-        position: absolute; 
-        bottom: 0; 
-        right: 0; 
-        left: 0;
+        // height: calc(100vh - 45vh);
+        height: calc(100vh - 47vh);
+         position: absolute; 
+        bottom: 0; right: 0; left: 0;
     }
-
     .sub-content{
-        background: color($colors,backgroundOne);
+        background: color($colors,dark);
     }
-    .item-class{
-        width: 95vw;
-        margin: 0 auto;
-        padding: 0 3vw; 
-        box-shadow: 0px 0px 7px 0px; 
-        border-radius: 5px;
-        margin-bottom: 14px;
+    .badge-div{
+        margin:2vw 0; display: flex;justify-content: center;
     }
-    .item-img{
-        height: 18vw;
-        width: 18vw;
-        border: 1px solid color($colors,backgroundOne);;
-        object-fit: cover;
-    }
-    .item-h2{
-        padding: 0 0 2vw 0;
-        font-weight: bold;
-        letter-spacing: 1.3px;
-    }
-    .item-p{
-        font-size: 11px; 
-        letter-spacing: 1px;
-    }
-
     .defaultBadge{
-        padding: 7px 12px;
-        letter-spacing: 1.2px;
+        margin-right: 5px; padding: 7px 12px; letter-spacing: 1.2px;
         background:  color($colors,backgroundTwo) !important;
         color: color($colors,dark) !important;
         border: 1px solid color($colors,backgroundThree) !important;
-
     }
     .activeBadgeclass{
-        padding: 7px 12px;
-        letter-spacing: 1.2px;
+        margin-right: 5px; padding: 7px 12px; letter-spacing: 1.2px;
         background:  color($colors,secondary) !important;
         border: 1px solid color($colors,secondary) !important;
     }
+
+    .content-two-item-maindiv{
+        display: flex; flex-direction: row; justify-content:space-evenly; flex-wrap: wrap;
+    }
+    .item-div{
+        width: 46vw;height:38vw;margin-bottom: 3vw;position:relative;
+    }
+    .item-div-img{
+        height: 100%;
+    }
+    .item-div-title{
+        position:absolute; bottom:0; width:46vw;text-align: center;
+        color:white; font-size: 16px; font-weight: 400;
+        letter-spacing: 2px; flex-wrap: wrap;padding: 2vw 2vw 4vw 2vw; 
+        background: black;opacity: 0.5;
+    }
+
+
 }

@@ -13,8 +13,10 @@ export class HomePage {
   showDetails:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.alldata={
-      male:[1,2,3,4,5],
-      female:[1,2,3,4,5,6,7]
+      male:[
+        {name:'HAIR'},{name:'SKIN'},{name:'COLOUR'},{name:'FACIAL'},
+      ],
+      female:[{name:'HAIR'},{name:'THREADING'},{name:'FACIAL'},{name:'BLEACH'},{name:'PEDICURE'},{name:'MANICURE'}]
     }
     this.showDetails = this.alldata.male;
   }
