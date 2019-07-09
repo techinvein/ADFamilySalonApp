@@ -1,0 +1,91 @@
+page-history {
+
+    .content-first{
+        background: color($colors,dark);
+    }
+    .segment-class{
+        color: white !important;
+        letter-spacing: 1.2px;
+        font-size: 14px;
+        font-weight: bold;
+        //text-transform: none !important;
+
+    }
+
+    .item-main-div{
+        margin: 0 2vw;
+        border: 0.5px solid #c8c7cc;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+    .custom-item{
+        background: transparent;
+    }
+    .item-img{
+        height: 18vw;width:18vw;object-fit: cover;
+    }
+    .div-one{
+        padding: 0 1vw 1vw 1vw;
+    }
+    .div-one-first{
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1.2px;white-space: normal;
+    }
+    .div-ne-second{
+        font-size: 12px;
+        letter-spacing: 1.2px;padding-top:2px;white-space: normal;
+    }
+
+    .div-two{
+        display: flex; flex-direction: row; justify-content:space-between;padding: 2vw 1vw 0 1vw;
+    }
+    // .div-two-first{
+    //     padding: 1vw 0 0 0 !important;font-size: 14px;
+    // }
+    .div-two-second{
+        padding: 1vw 0 0 0 !important;font-size: 13px;font-weight: bold;
+        color: color($colors,primary);
+    }
+
+    .badge-complete{
+        margin: 0 !important;
+        padding: 5px 8px !important;
+        border-radius: 3vw !important;
+        letter-spacing: 1.2px;
+        font-size: 12px;
+        font-weight: 400;
+        background: transparent;
+        color: color($colors,danger);
+        border: 1px solid color($colors,danger);
+    }
+    .badge-other{
+        margin: 0 !important;
+        padding: 5px 8px !important;
+        border-radius: 3vw !important;
+        letter-spacing: 1.2px;
+        font-size: 12px;
+        font-weight: 400;
+        background: transparent;
+        color: color($colors,secondary);
+        border: 1px solid color($colors,secondary);
+    }
+    
+    #notification-button {            
+        position: relative;
+        width: 42px;
+        top:1px;
+        right: 1px;
+        overflow: visible!important;
+    }
+
+
+#notifications-badge {
+        background-color: red;
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        border-radius: 100%;
+    }
+}

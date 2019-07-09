@@ -25,6 +25,8 @@ clickCM(){
 uploadCam(){
   alert("Functionality no implemented yet.")
 }
-
+checkout(){
+  this.navCtrl.push("CartPage");
+}
 
 }

@@ -1,0 +1,113 @@
+page-product-list {
+    .custom-container{
+        background: url("../../assets/imgs/cover.jpg");
+        background-repeat: no-repeat;
+        background-size: 100vw 80vw;
+        // background: white;
+    }
+    .main-div{
+        height: 66vh;
+        margin: 40vw 0 0 0;
+        border-radius: 10vw;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        background: color($colors,whitecolor) !important;
+        overflow: scroll;
+    }
+    .custom-heading{
+        padding: 3vw 8vw;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1.2px;
+        border: 1px solid color($colors,textcolorOne);
+        border-left: 0;
+        border-right: 0;
+        border-top: 0;
+    }
+
+    .circle-main-div{
+        display: flex;
+        flex-direction: row;
+        padding: 2vw 0;
+        border: 1px solid color($colors,textcolorOne) ;
+        margin: 0 5vw;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0
+    }
+
+    .circle-sub-div{
+        padding: 1vw 0 0 0;
+    }
+    .circle-border{
+        border: 1px solid color($colors,secondary);
+        border-radius:50%;
+    }
+    .custom-circle{
+        height: 2vw;
+        width: 2vw;
+        border-radius: 50%;
+        background: color($colors,danger);
+        margin: 2px;
+    }
+
+    
+    .custom-div-two{
+        display: flex; flex-direction: column;width:100%;padding:0 3vw
+    }
+    .custom-div-two-d1{
+        display: flex; flex-direction: row;justify-content: space-between
+    }
+    .custom-div-two-d1-sub-1{
+        font-size: 16px;
+        white-space: normal;
+        font-weight: bold;
+        letter-spacing: 1.2px;padding-bottom: 1vw
+    }
+    .custom-div-two-d1-sub-2{
+        font-size: 12px;
+        letter-spacing: 1.2px;padding-bottom: 1vw
+    }
+    .custom-div-two-d1-sub-3{
+        font-size: 14px;
+        letter-spacing: 1.2px;padding-bottom: 2vw;font-weight: bold;
+    }
+
+
+    .custom-div-two-d2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .custom-div-two-d2-sub-1{
+        padding: 6px;
+        background: transparent;
+        color: color($colors,secondary);
+        border: 2px solid color($colors,secondary);
+        border-radius: 11px;
+        letter-spacing: 1.2px;
+    }
+    .custom-icon{
+        padding-left: 2vw;
+    }
+    .custom-last-div{
+        font-size: 13px;
+        letter-spacing: 1px
+    }
+    #notification-button {            
+        position: relative;
+        width: 42px;
+        top:1px;
+        right: 1px;
+        overflow: visible!important;
+    }
+
+
+#notifications-badge {
+        background-color: red;
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        border-radius: 100%;
+    }
+}

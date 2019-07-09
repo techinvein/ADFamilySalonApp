@@ -1,17 +1,32 @@
-<ion-content no-padding>
+<!-- <ion-content no-padding>
     <div class="content-div">
       <div class="logo-bacground-div">
-        <!-- <img class="logo-img" src="../../assets/imgs/loading.gif" style="width: 100%"> -->
+      
       </div>
       <div class="item-div">
           <div class="custom-item-div">
             <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="number" placeholder="Mobile number" value=9038505480 maxlength="10" readonly ></ion-input>
+              <ion-input class="custom-input" type="Text" placeholder="Mobile number" value=9038505480 maxlength="10" readonly ></ion-input>
             </ion-item>
           </div>
           <div class="custom-item-div">
             <ion-item no-lines class="custom-item">
               <ion-input class="custom-input" type="email" placeholder="Email address"></ion-input>
+            </ion-item>
+          </div>
+          <div class="custom-item-div">
+            <ion-item no-lines class="custom-item">
+              <ion-input class="custom-input" type="text" placeholder="Your first name"></ion-input>
+            </ion-item>
+          </div>
+          <div class="custom-item-div">
+            <ion-item no-lines class="custom-item">
+              <ion-input class="custom-input" type="text" placeholder="Your last name"></ion-input>
+            </ion-item>
+          </div>
+          <div class="custom-item-div">
+            <ion-item no-lines class="custom-item">
+              <ion-input class="custom-input" type="text" placeholder="Your Address"></ion-input>
             </ion-item>
           </div>
       </div>
@@ -21,4 +36,58 @@
   </ion-content>
   <ion-footer class="custom-footer" no-border>
       <button class="footer-button" ion-button block (click)="clickContinue()">Continue</button>
-  </ion-footer>
+  </ion-footer> -->
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons> 
+    <ion-title>
+      About
+    </ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content scroll="false">
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <img src="assets/imgs/logoAd.png" style="width:208px"/>
+    <div class="splash-intro" style="color:#fff;font-size:18px;margin-top:3px">
+        Please Enter Your Personal Details
+    </div>
+  </div>
+
+  <div padding style=" padding-top: 0px !important;margin-top:20px">
+    
+      <ion-list>
+          <ion-item>
+              <ion-label floating>Mobile Number</ion-label>
+              <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>First Name</ion-label>
+              <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Last Name</ion-label>
+            <ion-input type="text"></ion-input>
+      </ion-item>
+    <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-input type="text" ></ion-input>
+      </ion-item>
+        </ion-list>
+         <p style="text-align: center;font-size: 12;color:rgb(248, 77, 77)" *ngIf="errMsg != ''">{{errMsg}}</p>
+    <button ion-button  round  color="dark" (click)="clickContinue()" style="display:inherit;margin:auto">Sign UP Now</button>
+    <!-- <p style="text-align: center;font-size: 12" (click)="forgotPassword()">Forgot password?</p> -->
+  </div>
+</ion-content>
+<!-- <ion-footer>
+  <p style="text-align: center;font-size: 12">Don't have an account? <strong style="color:#04a9bd" (click)="signupNow()">Create Account</strong></p>
+</ion-footer> -->

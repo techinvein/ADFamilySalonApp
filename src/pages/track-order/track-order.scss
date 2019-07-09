@@ -1,0 +1,112 @@
+page-track-order {
+    .custom-item{
+        box-shadow: 0px 0px 7px -4px;
+        border-radius: 1vw;
+        .item-inner{
+            padding-right: 0 !important;
+        }
+    }
+    .item-col{
+        white-space: normal;
+    }
+    .item-col-one-div{
+        padding-left: 1vw
+    }
+    .item-col-one-div-one{
+        font-size: 16px;font-weight: bold;letter-spacing: 1.2px;padding: 0 0 2vw 0;
+    }
+    .item-col-one-div-two{
+        font-size: 12px; letter-spacing: 1.2px;
+    }
+    .item-col-two-div-one{
+        text-align: right;font-size: 16px;font-weight: bold;letter-spacing: 1.2px;padding: 0 0 2vw 0;
+    }
+    .item-col-two-div-two{
+        text-align: right;font-size: 11px; letter-spacing: 1.2px;
+    }
+
+    //order status
+    .status-main-div{
+        display: flex;
+        margin-top:20vw;
+        flex-direction: column;
+        height: 100%;
+    }
+    .status-div{
+        display: flex; flex-direction: row;justify-content: space-evenly;width: 100%
+    }
+    .sub-div-one{
+        margin-top: 4vw;
+    }
+    .circle-div{
+        height: 4vw;
+        width: 4vw;
+        border-radius: 50%;
+        background: color($colors,danger);
+        margin-left: 1px;;
+    }
+    .circle-line{
+        height: 15vw;
+        width: 2px;
+        background: color($colors,secondary);
+        margin: 3px 2vw 3px 2vw
+    }
+    .active-circle-div{
+        height: 4vw;
+        width: 4vw;
+        border-radius: 50%;
+        background: color($colors,textcolorOne);
+        margin-left: 1px;;
+    }
+    .active-circle-line{
+        height: 15vw;
+        width: 2px;
+        background: color($colors,textcolorOne);
+        margin: 3px 2vw 3px 2vw
+    }
+
+
+
+    .status-image-div{
+        margin: 1vw 0 4vw 1vw;
+    }
+    .status-img{
+        height: 15vw;
+    }
+
+    .status-text-div{
+        margin: 1vw 0 10vw 0;
+        color: color($colors,backgroundThree)
+    }
+    .active-status-text-div{
+        margin: 1vw 0 10vw 0;
+        color: color($colors,colorblue)   
+    }
+
+    .text-one{
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1.2px;
+        padding: 1vw 0;
+    }
+    .text-two{
+        font-size: 12px;
+        letter-spacing: 1.2px;
+    }
+    #notification-button {            
+        position: relative;
+        width: 42px;
+        top:1px;
+        right: 1px;
+        overflow: visible!important;
+    }
+
+
+#notifications-badge {
+        background-color: red;
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        border-radius: 100%;
+    }
+}

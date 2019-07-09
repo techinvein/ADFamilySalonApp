@@ -1,0 +1,108 @@
+
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Order Track</ion-title>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="search" style="font-size:26px"></ion-icon>
+      </button>
+      <button id="notification-button" ion-button >
+          <ion-icon name="cart" style="font-size:27px">
+            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
+            
+          </ion-icon>              
+      </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item no-lines no-padding class="custom-item">
+      <ion-row>
+        <ion-col col-6 class="item-col">
+          <div class="item-col-one-div">
+            <div class="item-col-one-div-one">ORDER NAME</div>
+            <div class="item-col-one-div-two">Bridal Package</div>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="item-col">
+            <div >
+                <div class="item-col-two-div-one" >ORDER NUMBER</div>
+                <div class="item-col-two-div-two" >#ABC122JNCD532</div>
+            </div>
+        </ion-col>
+      </ion-row>
+  </ion-item>
+
+  <div class="status-main-div">
+
+    <div class="status-div">
+      <!-- <div> -->
+        <div class="sub-div-one">
+
+          <div>
+              <div class="circle-div"></div>
+              <div class="circle-line"></div>
+          </div>     
+          <div>
+              <div class="circle-div"></div>
+              <div class="circle-line"></div>
+          </div> 
+          <div>
+              <div class="active-circle-div"></div>
+              <div class="active-circle-line"></div>
+          </div> 
+          <div>
+              <div class="active-circle-div"></div>
+                <!-- <div class="active-circle-line"></div> -->
+          </div>            
+        </div>
+
+        
+        <div>
+            <div class="status-image-div">
+              <img class="status-img" src="../../assets/imgs/order_placed.svg">
+            </div>
+            <div class="status-image-div">
+              <img class="status-img" src="../../assets/imgs/confirm-order.svg">
+            </div>
+            <div class="status-image-div">
+              <img class="status-img" src="../../assets/imgs/chef.svg">
+            </div>
+            <div class="status-image-div">
+              <img class="status-img" src="../../assets/imgs/pickup.svg">
+            </div>
+        </div>
+
+        <div>
+            <div class="status-text-div">
+              <div class="text-one">Order Placed</div>
+              <div class="text-two">We have received your order</div>
+            </div>
+            <div class="status-text-div">
+              <div class="text-one">Order Confirmed</div>
+              <div class="text-two">Your order has been confirmed</div>
+            </div>
+            <div class="active-status-text-div">
+              <div class="text-one">Order Processed</div>
+              <div class="text-two">We are preparing your order</div>
+            </div>
+            <div class="status-text-div">
+              <div class="text-one">Order Complete</div>
+              <div class="text-two">Your order is ready for pickup</div>
+            </div>
+        </div>
+        
+ 
+    </div>
+
+    <!-- order_placed.svg
+    confirm-order.svg
+  chef.svg
+  pickup.svg
+
+-->
+
+  </div>
+
+</ion-content>

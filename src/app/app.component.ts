@@ -20,7 +20,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: "HomePage" },
-      { title: 'Profile', component: "ProfilePage" }
+      { title: 'Profile', component: "ProfilePage" },
+      { title: 'My Orders', component: "HistoryPage" },
+      { title: 'My Cart', component: "CartPage" }
     ];
 
   }
@@ -30,7 +32,10 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 5000);
+      
     });
   }
 
@@ -38,5 +43,8 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+  logout(){
+    this.nav.setRoot('PhoneNumberAddPage');
   }
 }

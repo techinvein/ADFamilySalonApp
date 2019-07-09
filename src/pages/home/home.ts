@@ -14,9 +14,9 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.alldata={
       male:[
-        {name:'HAIR'},{name:'SKIN'},{name:'COLOUR'},{name:'FACIAL'},
+        {name:'Hair Treatement',image:"https://www.adfamilysalon-academy.com/images/hair-treatment.jpg"},{name:'Hair Style',image:"https://www.adfamilysalon-academy.com/images/g2.jpg"},{name:'COLOUR',image:'https://www.adfamilysalon-academy.com/images/colour.jpg'},{name:'FACIAL',image:'https://www.adfamilysalon-academy.com/images/facial.jpg'},{name:'Polishing',image:'http://cdn2.dealnyou.in/img/original/27.JPG?w=433&h=416'},{name:'Manicure',image:'./assets/imgs/pedicure2.jpg'}
       ],
-      female:[{name:'HAIR'},{name:'THREADING'},{name:'FACIAL'},{name:'BLEACH'},{name:'PEDICURE'},{name:'MANICURE'}]
+      female:[ {name:'Hair Treatement',image:"./assets/imgs/Services_Hair1.png"},{name:'Makeup',image:'./assets/imgs/maxresdefault.jpg'},{name:'Hair Style',image:"./assets/imgs/hair-style-layered_440948.png"},{name:'THREADING',image:"https://www.adfamilysalon-academy.com/images/threading.jpg"},{name:'FACIAL',image:'./assets/imgs/facial.jpg'},{name:'BLEACH',image:'./assets/imgs/3clean-up7.jpg'},{name:'PEDICURE',image:'https://www.adfamilysalon-academy.com/images/pedicure.jpg'},{name:'MANICURE',image:'https://www.adfamilysalon-academy.com/images/manicure.jpg'}]
     }
     this.showDetails = this.alldata.male;
   }
@@ -39,9 +39,12 @@ export class HomePage {
   }
 
   goToItemDetails(){
-    this.navCtrl.push("ItemDetailsPage");
+    this.navCtrl.push("ProductListPage");
   }
 
+  checkout(){
+    this.navCtrl.push("CartPage");
+  }
   
 
 }

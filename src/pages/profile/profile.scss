@@ -80,4 +80,20 @@ page-profile {
         height: 100%;
         background: color($colors,dark);
     }
+    #notification-button {            
+        position: relative;
+        width: 42px;
+        top:1px;
+        right: 1px;
+        overflow: visible!important;
+    }
+
+
+#notifications-badge {
+        background-color: red;
+        position: absolute;
+        top: 0px;
+        right: 2px;
+        border-radius: 100%;
+    }
 }

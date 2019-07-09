@@ -75,7 +75,7 @@ page-phone-number-verification {
     .sub-two{ padding: 10vw 0 0 0;}
     .sub-logo{ height: 45vw;width: 45vw; }
     .sub-three{font-size: 14px; font-weight: bold;padding: 0 10vw; letter-spacing: 1.2px;}
-    .sub-four{font-size: 11px;color:color($colors,textcolorOne); font-weight: 300; letter-spacing: 1px;padding: 4vw 10vw;}
+    .sub-four{font-size: 11px;color:#777777; font-weight: 300; letter-spacing: 1px;padding: 4vw 10vw;}
     .sub-span{
         color:color($colors,danger);
         font-size: 12px;
@@ -110,7 +110,7 @@ page-phone-number-verification {
     .sub-six{padding: 15vw 10vw;}
     .sub-six-btn{
         text-transform: none !important;font-size: 16px;height: 12vw;width: 32vw;letter-spacing: 1.2px;
-        background: color($colors,danger);
+        background: color($colors,dark);
     }
 
     //Universion button style

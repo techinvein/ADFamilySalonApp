@@ -28,7 +28,31 @@
 
 /* For all Toast */
 
+.sidemenuToolbar{
+    background-color:color($colors,dark) !important;
+    width: 100%;
+    display: block;
+    .headerAvater{
+        background: transparent;
+        padding-left: 2px !important;
+        .headerAvaterSpan{
+            display: block;
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 1.2px;
+            font-size: 16px;
 
+        }
+        .headerAvaterSpan2{
+            display: block;
+            color: rgb(189, 189, 189);
+            
+            letter-spacing: 1.2px;
+            font-size: 13px;
+
+        }
+    }
+}
 .scroll-content {
     // padding-bottom: 15px !important;
     padding-bottom: 0 !important;
@@ -43,6 +67,7 @@ ion-footer {
 .text-input-ios{
     margin-right: 0 !important;
 }
+.toolbar-title-md {font-size:17px}
 
 // .button-md.activated {
 //     background: color($colors,dark) !important;
