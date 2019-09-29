@@ -66,8 +66,8 @@ export class HomePage {
       }
   }
 
-  goToItemDetails(){
-    this.navCtrl.push("ProductListPage");
+  goToItemDetails(item, index){
+    this.navCtrl.push("ProductListPage", { catDetails: item });
   }
 
   checkout(){
