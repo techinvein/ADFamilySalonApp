@@ -17,48 +17,49 @@
     <ion-list>
         <ion-item-divider color="light">YOUR SELECTED ITEM</ion-item-divider>
      
-      <ion-item>
+      <ion-item *ngFor="let cart of allCartProducts; let i=index">
         <ion-avatar item-start>
-          <img src="./assets/imgs/it-looks-beautiful_v1.jpg">
+          <img src="{{cart.image}}">
         </ion-avatar>
-        <h2>Bridal Makeup</h2>
-        <p class="price"  item-end>₹ 150</p>
+        <h2>{{cart.subcat_name}}</h2>
+        <p class="price"  item-end>₹ {{cart.subcat_price}}</p>
        
         <ion-buttons >
-            <button ion-button icon-only  style="height:18px;width:18px;border-radius:50%;min-width:20px;background:#a9a8a7">
+            <button ion-button icon-only  style="height:18px;width:18px;border-radius:50%;min-width:20px;background:#a9a8a7" *ngIf="cart.qty!=1" (click)="decrement(cart)">
               <ion-icon name="ios-remove" style="font-size:20px"></ion-icon>
             </button>
-            <button ion-button style="height:18px;padding:0px;box-shadow:none;color: #03c503;font-size: 16px;font-weight: 400;background:none">
-             2
+            <button ion-button icon-only  style="height:18px;width:18px;border-radius:50%;min-width:20px;background:#a9a8a7" *ngIf="cart.qty==1" (click)="deleteItem(cart)">
+              <ion-icon name="trash" style="font-size:20px"></ion-icon>
             </button>
-            <button ion-button icon-only style="height:18px;width:18px;border-radius:50%;min-width:20px;background:#565656">
+            <button ion-button style="height:18px;padding:0px;box-shadow:none;color: #03c503;font-size: 16px;font-weight: 400;background:none">
+             {{cart.qty}}
+            </button>
+            <button ion-button icon-only style="height:18px;width:18px;border-radius:50%;min-width:20px;background:#565656" (click)="increment(cart)">
               <ion-icon name="ios-add" style="font-size:20px"></ion-icon>
             </button>
           </ion-buttons>
       </ion-item>
     </ion-list>
-    <ion-item-divider color="light" style="padding-right:8px;color:#03a703;font-size:15px;background-color:#f9f9f9">
-        <!-- <ion-icon name="leaf" item-start></ion-icon> -->
+    <!-- <ion-item-divider color="light" style="padding-right:8px;color:#03a703;font-size:15px;background-color:#f9f9f9">
         <ion-avatar item-start style="margin:0;min-width: 35px;min-height: 37px;">
             <img src="./assets/imgs/badge.png" style="height:24px;width:24px;margin-top:7px">
           </ion-avatar>
           PROMO APPLIED - 25% off up to ₹100  
         <ion-icon name="md-trash" item-end style="color:#e13838;font-size:24px"></ion-icon>
-        <!-- <ion-icon name="ios-trash" item-end style="color:#888585"></ion-icon> -->
-   </ion-item-divider>
+   </ion-item-divider> -->
    <ion-card style="margin:1px 0px 6px 0;width:100%;box-shadow:none">
       <ion-grid style="padding:10px">
           <ion-row>
             <ion-col col-7><span style="font-size: 16px;color: #5e5d5d;">Item Total</span></ion-col>
-            <ion-col col-5 style="text-align: right;padding-right:8px;font-size: 16px;color: #5e5d5d;"><span>₹ 300</span></ion-col>
+            <ion-col col-5 style="text-align: right;padding-right:8px;font-size: 16px;color: #5e5d5d;"><span>₹ {{cartTotal}}</span></ion-col>
           </ion-row>
           <ion-row>
               <ion-col col-7><span style="font-size: 14px;color: #03a703;">Discount (PROMO)</span></ion-col>
-              <ion-col col-5 style="text-align: right;padding-right:8px;"><span style="font-size: 15px;color: #03a703;">- ₹ 50</span></ion-col>
+              <ion-col col-5 style="text-align: right;padding-right:8px;"><span style="font-size: 15px;color: #03a703;">- ₹ 0</span></ion-col>
           </ion-row>
           <ion-row style="border-top: 1px solid #d6d6d6;margin-top: 10px;">
               <ion-col col-7 style="margin-top:4px"><span style="font-size: 18px;font-weight: bold;color: #353535;">Grand Total</span></ion-col>
-              <ion-col col-5 style="text-align: right;padding-right:8px;margin-top: 4px;font-size: 18px;font-weight: bold;color: #353535;"><span>₹ 250</span></ion-col>
+              <ion-col col-5 style="text-align: right;padding-right:8px;margin-top: 4px;font-size: 18px;font-weight: bold;color: #353535;"><span>₹ {{cartTotal}}</span></ion-col>
           </ion-row>
         </ion-grid>
     </ion-card>
