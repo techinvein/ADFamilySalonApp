@@ -1,0 +1,167 @@
+{
+  "products" : [ {
+    "categories" : {
+      "cat_00" : {
+        "cat_code" : "AD/HS00",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://www.kyasha.co.uk/wp-content/uploads/2015/09/Hair-Cutting1.jpg",
+        "cat_name" : "Hair Style",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/HS00/HC00",
+            "subcat_description" : "Hair with sampoo",
+            "subcat_name" : "Hair Cut",
+            "subcat_price" : 70
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/HS00/HCA01",
+            "subcat_description" : "Hair cut with latest trends",
+            "subcat_name" : "Hair Cut Advanced",
+            "subcat_price" : 150
+          }
+        }
+      },
+      "cat_01" : {
+        "cat_code" : "AD/HC01",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://www.kyasha.co.uk/wp-content/uploads/2015/09/Hair-Cutting1.jpg",
+        "cat_name" : "Hair Color",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/HC01/HC00",
+            "subcat_description" : "Hair Color(Majiral) Type 1",
+            "subcat_name" : "Hair Color(Majiral)",
+            "subcat_price" : 300
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/HC01/HC01",
+            "subcat_description" : "Hair Color(Majiral) Type 2",
+            "subcat_name" : "Hair Color(Majiral)",
+            "subcat_price" : 350
+          },
+          "subcat_02" : {
+            "subcat_code" : "AD/HS00/HC02",
+            "subcat_description" : "Hair Color(INOA)",
+            "subcat_name" : "Hair Color(INOA)",
+            "subcat_price" : 400
+          }
+        }
+      },
+      "cat_02" : {
+        "cat_code" : "AD/F02",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://www.kyasha.co.uk/wp-content/uploads/2015/09/Hair-Cutting1.jpg",
+        "cat_name" : "Facial",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/F02/D00",
+            "subcat_description" : "DI - TAN Pack Type 1",
+            "subcat_name" : "DI - TAN Pack",
+            "subcat_price" : 150
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/F02/D01",
+            "subcat_description" : "DI - TAN Pack Type 2",
+            "subcat_name" : "DI - TAN Pack",
+            "subcat_price" : 200
+          },
+          "subcat_02" : {
+            "subcat_code" : "AD/F02/B02",
+            "subcat_description" : "Bleach",
+            "subcat_name" : "Bleach",
+            "subcat_price" : 250
+          }
+        }
+      }
+    },
+    "name" : "Male"
+  }, {
+    "categories" : {
+      "cat_00" : {
+        "cat_code" : "AD/FHS00",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_name" : "Hair Style",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/FHS00/D00",
+            "subcat_description" : "Hair Cut with Shampoo",
+            "subcat_name" : "Hair Cut",
+            "subcat_price" : 150
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/FHS00/B01",
+            "subcat_description" : "N/A",
+            "subcat_name" : "Baby Cut",
+            "subcat_price" : 100
+          },
+          "subcat_02" : {
+            "subcat_code" : "AD/FHS00/BS02",
+            "subcat_description" : "Blowdry Seating Type 1",
+            "subcat_name" : "Blowdry Seating",
+            "subcat_price" : 100
+          },
+          "subcat_03" : {
+            "subcat_code" : "AD/FHS00/BS03",
+            "subcat_description" : "Blowdry Seating Type 2",
+            "subcat_name" : "Blowdry Seating",
+            "subcat_price" : 150
+          }
+        }
+      },
+      "cat_01" : {
+        "cat_code" : "AD/FT01",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_name" : "Threading",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/FT01/E00",
+            "subcat_description" : "N/A",
+            "subcat_name" : "Eye Brow",
+            "subcat_price" : 20
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/FT01/FH01",
+            "subcat_description" : "N/A",
+            "subcat_name" : "Fore Head",
+            "subcat_price" : 10
+          },
+          "subcat_02" : {
+            "subcat_code" : "AD/FT01/UL02",
+            "subcat_description" : "N/A",
+            "subcat_name" : "Upper Lip",
+            "subcat_price" : 10
+          }
+        }
+      },
+      "cat_02" : {
+        "cat_code" : "AD/FF02",
+        "cat_cover_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_image" : "http://tradeclick.in/web/image/product.template/1559/image?unique=74178c8",
+        "cat_name" : "Facial",
+        "subcategories" : {
+          "subcat_00" : {
+            "subcat_code" : "AD/FF02/D00",
+            "subcat_description" : "DI - TAN Pack Type 1",
+            "subcat_name" : "DI - TAN Pack",
+            "subcat_price" : 150
+          },
+          "subcat_01" : {
+            "subcat_code" : "AD/FF02/D01",
+            "subcat_description" : "DI - TAN Pack Type 2",
+            "subcat_name" : "DI - TAN Pack",
+            "subcat_price" : 200
+          },
+          "subcat_02" : {
+            "subcat_code" : "AD/FF02/B02",
+            "subcat_description" : "Bleach",
+            "subcat_name" : "Bleach",
+            "subcat_price" : 250
+          }
+        }
+      }
+    },
+    "name" : "Female"
+  } ]
+}

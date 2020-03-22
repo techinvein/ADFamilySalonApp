@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>Make Up</ion-title>
+    <ion-title>{{catName}}</ion-title>
     <ion-buttons end>
       <button ion-button>
         <ion-icon name="search" style="font-size:26px"></ion-icon>
@@ -33,11 +33,11 @@
         <div class="custom-div-two">
               <div class="custom-div-two-d1">
                   <div>
-                      <div class="custom-div-two-d1-sub-1" >Bridal Package</div>
-                      <div class="custom-div-two-d1-sub-2">Facial + Full Hand + Leg Wax + Pedicure</div>
-                      <div class="custom-div-two-d1-sub-3">$150</div>
+                      <div class="custom-div-two-d1-sub-1" >{{item.subcat_name}}</div>
+                      <div class="custom-div-two-d1-sub-2">{{item.subcat_description}}</div>
+                      <div class="custom-div-two-d1-sub-3">{{item.subcat_price}}</div>
                   </div>
-                  <div class="custom-div-two-d2" (click)="addToCart()">
+                  <div class="custom-div-two-d2" (click)="addToCart(item, i)">
                       <ion-badge class="custom-div-two-d2-sub-1" item-end>Add<ion-icon class="custom-icon" name="add" item-end></ion-icon></ion-badge>
                   </div>
               </div>

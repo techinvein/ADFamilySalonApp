@@ -45,9 +45,9 @@
     <div class="content-div-two">
       <ion-content no-padding class="sub-content">
         <div class="content-two-item-maindiv">
-            <div class=item-div  *ngFor="let item of showDetails; let i-index;" (click)="goToItemDetails()">
-                <img class="item-div-img"  src="{{item.image}}">
-                <div class="item-div-title">{{item.name}}</div>
+            <div class=item-div  *ngFor="let item of showDetails; let i=index;" (click)="goToItemDetails(item,i)">
+                <img class="item-div-img"  src="{{item.cat_image}}">
+                <div class="item-div-title">{{item.cat_name}}</div>
             </div>
             
         </div>
