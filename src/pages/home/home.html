@@ -21,16 +21,10 @@
 
 <ion-content no-padding class="content-first">
     <div class="content-div">
-      <div class="slider-div">
+      <div class="slider-div" *ngIf = "banners != ''">
         <ion-slides pager=true autoplay='3000' loop=true>
-            <ion-slide style="margin-top:2px">
-              <img item-start class="cc-img"  src="./assets/imgs/banner1.webp">
-            </ion-slide>
-            <ion-slide style="margin-top:2px">
-              <img item-start  src="./assets/imgs/banner2.jpg">
-            </ion-slide>
-            <ion-slide style="margin-top:2px">
-              <img item-start  src="./assets/imgs/banner3.jpg">
+            <ion-slide style="margin-top:2px" *ngFor="let banner of banners; let i = index">
+              <img item-start  src="{{banner}}">
             </ion-slide>
           </ion-slides>
       </div>

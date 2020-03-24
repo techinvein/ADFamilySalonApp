@@ -51,7 +51,26 @@ export class TrackOrderPage {
     });
     confirm.present();
     }else{
-      alert("SORRY!\nCancellation is not possible after order approved. For futher information please contact to authority.");
+      const confirm = this.alertCtrl.create({
+        title: 'Attention',
+        message: 'SORRY!\nCancellation is not possible after order approved. For futher information please contact to authority.',
+        buttons: [
+          {
+            text: 'Disagree',
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          },
+          {
+            text: 'CALL NOW', 
+            handler: () => {
+              console.log('Agree clicked');
+            }
+          }
+        ]
+      });
+      confirm.present();
+
     }
   }
   reschedule(){

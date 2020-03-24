@@ -21,12 +21,18 @@ export class HomePage {
     useLocale: true,
     maxResults: 5
   };
+  banners:any = [];
   constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation) {
     this.alldata = {
       male: [],
       female: []
     }
-   
+    
+    firebase.database().ref('banners/').on('value',(snapBanner)=>{
+      if(snapBanner.val()){
+        this.banners = snapBanner.val();
+      }
+    })
   }
 
   ionViewDidLoad() {

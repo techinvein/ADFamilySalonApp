@@ -43,17 +43,8 @@ export class MyApp {
   }
 
   authenticateUser() {
-    // console.log('hii')
-    // firebase.auth().createUserWithEmailAndPassword('sarghyadeep@gmail.com','Vein9*').then((user)=>{
-    //   console.log(user);
-    //   firebase.database().ref('users/'+user.user.uid).set({
-    //     email: 'sarghyadeep@gmail.com',
-    //     name: "Arghyadeep Sinha",
-    //     address: "Madhyamgram"
-    //   })
-    // })
-
-      //firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
+  
+   //firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
     firebase.auth().signInWithEmailAndPassword("s@g.com","123456")
     
     firebase.auth().onAuthStateChanged((user)=>{

@@ -14,6 +14,13 @@
 </ion-header>
 
 <ion-content padding>
+   
+<ion-list>
+    <ion-item>
+      <h2>VIEW ORDERS LIST</h2>
+      <button ion-button clear item-end (click)="viewDetails()">View</button>
+    </ion-item>
+  </ion-list>
   <ion-item no-lines no-padding class="custom-item">
       <ion-row>
         <ion-col col-6 class="item-col">
@@ -30,9 +37,7 @@
         <ion-col col-6 class="item-col">
             <div >
                 <div class="item-col-two-div-one" >ORDER NUMBER</div>
-                <div class="item-col-two-div-two" >{{allDetails.bookingId}}</div>
-                <div class="item-col-one-div-one" style="margin-top:55px;margin-left:22px;font-size:14px;color:rgb(0, 76, 175)" (click)="viewDetails()">SEE ORDER DETAILS</div>
-                
+                <div class="item-col-two-div-two" >{{allDetails.bookingId}}</div>                
             </div>
         </ion-col>
       </ion-row>

@@ -92,6 +92,6 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.2">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you--save" />
     </plugin>
-    <engine name="android" spec="~7.1.4" />
     <plugin name="cordova-plugin-nativegeocoder" spec="^3.2.2" />
+    <engine name="android" spec="~6.3.0" />
 </widget>
