@@ -1,0 +1,21 @@
+
+<ion-header >
+  <ion-navbar color="dark">
+    <ion-title>Select Address</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let address of saveaddress; let i=index">
+          <h2>{{address.fullName}}</h2>
+          <p>{{address.flatOrHouseNo}}</p>
+          <p>{{address.streetOrLocality}}</p>
+          <p>{{address.city}},{{address.Pincode}},India</p>
+          <button ion-button clear item-end (click)="continue(address)">Add</button>
+        </ion-item>      
+      </ion-list>
+  <ion-fab  bottom right (click)="addAddress()" >
+    <button ion-fab><ion-icon name="add" ></ion-icon></button>
+  </ion-fab>
+</ion-content>

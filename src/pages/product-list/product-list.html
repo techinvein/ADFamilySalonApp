@@ -7,7 +7,7 @@
       </button>
       <button id="notification-button" ion-button (click)="cartPage()">
           <ion-icon name="cart" style="font-size:27px">
-            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
+            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">{{cartTotal && cartTotal>0?cartTotal:0}}</ion-badge>
             
           </ion-icon>              
       </button>
@@ -16,7 +16,7 @@
   <!-- <ion-searchbar style="background: #222" (ionInput)="getItems($event)"></ion-searchbar> -->
 </ion-header>
 
-<ion-content no-lines no-padding class="custom-container">
+<ion-content no-lines no-padding class="custom-container" [style.backgroundImage]="'url('+image+')'"  >
 
   <div class="main-div">
     <Br>

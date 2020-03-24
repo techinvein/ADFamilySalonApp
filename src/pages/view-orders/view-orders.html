@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="dark">
+      <ion-title>My Orders</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngFor="let order of myorders; let i = index">
+          <ion-avatar item-start>
+            <img src="{{order.image}}">
+          </ion-avatar>
+          <h2>{{order.subcat_name}} ({{order.serviceFor}})</h2>
+          <p>{{order.subcat_description}}</p>
+          <p>₹{{order.subcat_price}} | Quantity - {{order.qty}}</p>
+          <p></p>
+          
+        </ion-item>
+      </ion-list>
+</ion-content>

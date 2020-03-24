@@ -1,6 +1,9 @@
+
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 @IonicPage()
 @Component({
@@ -12,20 +15,25 @@ export class HomePage {
   femaleClass:boolean = false;
   alldata:any;
   showDetails:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  cartTotal:any;
+  geoAddress:any;
+  geoencoderOptions: NativeGeocoderOptions = {
+    useLocale: true,
+    maxResults: 5
+  };
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation) {
     this.alldata = {
       male: [],
       female: []
     }
-    /* this.alldata={
-      male:[
-        {name:'Hair Treatement',image:"https://www.adfamilysalon-academy.com/images/hair-treatment.jpg"},{name:'Hair Style',image:"https://www.adfamilysalon-academy.com/images/g2.jpg"},{name:'COLOUR',image:'https://www.adfamilysalon-academy.com/images/colour.jpg'},{name:'FACIAL',image:'https://www.adfamilysalon-academy.com/images/facial.jpg'},{name:'Polishing',image:'http://cdn2.dealnyou.in/img/original/27.JPG?w=433&h=416'},{name:'Manicure',image:'./assets/imgs/pedicure2.jpg'}
-      ],
-      female:[ {name:'Hair Treatement',image:"./assets/imgs/Services_Hair1.png"},{name:'Makeup',image:'./assets/imgs/maxresdefault.jpg'},{name:'Hair Style',image:"./assets/imgs/hair-style-layered_440948.png"},{name:'THREADING',image:"https://www.adfamilysalon-academy.com/images/threading.jpg"},{name:'FACIAL',image:'./assets/imgs/facial.jpg'},{name:'BLEACH',image:'./assets/imgs/3clean-up7.jpg'},{name:'PEDICURE',image:'https://www.adfamilysalon-academy.com/images/pedicure.jpg'},{name:'MANICURE',image:'https://www.adfamilysalon-academy.com/images/manicure.jpg'}]
-    } */
+   
   }
 
   ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please Wait...'
+    }); 
+    loading.present();
     console.log('ionViewDidLoad HomePage');
     firebase.database().ref('products/').on('value',(snap)=>{
       console.log(snap.val());
@@ -49,10 +57,21 @@ export class HomePage {
         }
       }
       this.showDetails = this.alldata.male;
+      this.checkCartItem()
       console.log(this.alldata)
+      //this.getLocation()
+      loading.dismiss();
     })
   }
 
+  getLocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log('geolocation start')
+      this.getGeoencoder(resp.coords.latitude,resp.coords.longitude);
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+  }
   clickGender(value){
     console.log(value)
       if(value == 'male'){
@@ -67,6 +86,7 @@ export class HomePage {
   }
 
   goToItemDetails(item, index){
+    item.serviceFor=this.maleClass?'Male':'Female';
     this.navCtrl.push("ProductListPage", { catDetails: item });
   }
 
@@ -75,4 +95,55 @@ export class HomePage {
   }
   
 
+  checkCartItem(){
+    let currentUser = firebase.auth().currentUser.uid;
+    if(currentUser) {
+      firebase.database().ref('users/' + currentUser + '/cart/').on('value',(snap)=>{
+        console.log(snap.val());
+        if(snap.val()) {
+          let data = snap.val();
+          this.cartTotal = Object.keys(data).length;
+          
+          }
+        else {
+          this.cartTotal = 0;
+        }
+      })
+    }
+  }
+
+  //geocoder method to fetch address from coordinates passed as arguments
+  getGeoencoder(latitude,longitude){
+    this.nativeGeocoder.reverseGeocode(latitude, longitude, this.geoencoderOptions)
+    .then((result: NativeGeocoderReverseResult[]) => {
+      this.geoAddress = this.generateAddress(result[0]);
+      if(this.geoAddress){
+        let location = {
+          lat:latitude,
+          lng:longitude,
+          add:this.geoAddress
+        }
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/location/').set(location)
+      }
+
+    })
+    .catch((error: any) => {
+      alert('Error getting location'+ JSON.stringify(error));
+    });
+  }
+
+  //Return Comma saperated address
+  generateAddress(addressObj){
+      let obj = [];
+      let address = "";
+      for (let key in addressObj) {
+        obj.push(addressObj[key]);
+      }
+      obj.reverse();
+      for (let val in obj) {
+        if(obj[val].length)
+        address += obj[val]+', ';
+      }
+    return address.slice(0, -2);
+  }
 }

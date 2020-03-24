@@ -1,36 +1,3 @@
-<!-- <ion-content no-padding>
-      <div style="width: 90vw; margin: 0 auto; background:white;">
-        <ion-item no-lines >
-            <ion-label>Select Date </ion-label>
-        </ion-item>
-        <ion-item no-lines >
-          <ion-datetime displayFormat="MM/DD/YYYY" placeholder="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
-        </ion-item>
-      </div>
-      <div style="width: 90vw; margin: 0 auto; background:white;">
-        <ion-item no-lines style="margin-top: 4vw;">
-          <div item-left>
-              <ion-item>
-                  <ion-label>Gender</ion-label>
-                  <ion-select [(ngModel)]="gender">
-                    <ion-option value="f">Female</ion-option>
-                    <ion-option value="m">Male</ion-option>
-                  </ion-select>
-                </ion-item>
-          </div>
-          <div item-right>
-              <ion-item>
-                  <ion-label>Gender</ion-label>
-                  <ion-select [(ngModel)]="gender">
-                    <ion-option value="f">Female</ion-option>
-                    <ion-option value="m">Male</ion-option>
-                  </ion-select>
-                </ion-item>
-          </div>
-        </ion-item>
-      </div>
-
-</ion-content> -->
 
 <ion-content class="main-view">
     <div class="overlay" (click)="dismiss()"></div>
@@ -41,7 +8,7 @@
                 <ion-label>Select Your Booking Date</ion-label>
             </ion-item>
             <ion-item no-lines style="background:white">
-              <ion-datetime style="padding: 0 !important" displayFormat="DD/MM/YYYY" placeholder="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+              <ion-datetime style="padding: 0 !important" displayFormat="DD/MM/YYYY" placeholder="MM/DD/YYYY" [(ngModel)]="myDate" [min]="currentDate" [max]="maxdate"></ion-datetime>
             </ion-item>
           </div>
           <div style="width: 90vw; margin: 0 auto;">
@@ -54,24 +21,15 @@
                   <ion-item no-lines padding style="background:white;padding:0 !important; width: 90vw;
                   height: 14vw;">
                       <!-- <ion-label style="padding-left: 2vw">Hour</ion-label> -->
-                      <ion-select [(ngModel)]="fromTimeSlot" class="custom-select">
-                        <ion-option value="{{i}}" *ngFor="let item of fromTime; let i=index;">{{item}}</ion-option>
+                      <ion-select [(ngModel)]="selectedTimeSlot" class="custom-select">
+                        <ion-option value="{{i}}" *ngFor="let item of TimeSlots; let i=index;">{{item}}</ion-option>
                       </ion-select>
                     </ion-item>
               </div>
-              <!-- <div item-right style="margin: 0 !important">
-                  <ion-item no-lines padding class="newclass" style="background:white;padding:0 !important; width: 43vw;
-                  height: 14vw;">
-                      
-                      <ion-select [(ngModel)]="toTimeSlot" class="custom-select">
-                          <ion-option value="{{j}}" *ngFor="let toItem of toTime; let j = index">{{toItem}}</ion-option>
-                          
-                      </ion-select>
-                    </ion-item>
-              </div> -->
+          
             </ion-item>
           </div>
-          <button style="width: 90vw;height:13vw; margin: 0 auto;  margin-top: 4vw" ion-button block color="dark" (click)="pay()">Pay now</button>
+          <button style="width: 90vw;height:13vw; margin: 0 auto;  margin-top: 4vw" ion-button block color="dark" (click)="bookNow()">Book Now</button>
     
     </div>
   </ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>About Us</ion-title>
+    
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<h2 style="font-size:18px">WHO WE ARE</h2>
+<div *ngIf="adminData">
+  <p>{{adminData.about_us}}</p>
+
+  <h4 style="font-size:15px">OUR OFFICE ADDRESS</h4>
+   <p>{{adminData.address}}</p>
+   <p><b>We are Available -</b> {{adminData.opening_time}}</p>
+
+   <h4 style="font-size:15px">Contact US</h4>
+   <p>Email- {{adminData.email}}</p>
+   <p>Mobile- {{adminData.Mobile}}</p>
+   <p>Website- {{adminData.website}}</p>
+</div>
+
+</ion-content>

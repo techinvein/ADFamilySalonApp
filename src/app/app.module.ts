@@ -5,9 +5,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { Geolocation } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
-
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 var firebaseConfig = {
   apiKey: "AIzaSyAn9HZ9eS9M1gHgHNg4LsgJtbto5oSAPfo",
   authDomain: "salon-ef6a7.firebaseapp.com",
@@ -35,6 +35,8 @@ firebase.initializeApp(firebaseConfig);
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
+    NativeGeocoder,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

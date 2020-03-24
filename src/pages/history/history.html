@@ -5,15 +5,6 @@
         </button>
       <ion-title>History</ion-title>
       <ion-buttons end>
-        <button ion-button>
-          <ion-icon name="search" style="font-size:26px"></ion-icon>
-        </button>
-        <button id="notification-button" ion-button (click)="checkout()">
-            <ion-icon name="cart" style="font-size:27px">
-              <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
-              
-            </ion-icon>              
-        </button>
         </ion-buttons>
     </ion-navbar>
     <div  style="background: #222;">
@@ -29,20 +20,21 @@
     <!-- <ion-searchbar style="background: #222" (ionInput)="getItems($event)"></ion-searchbar> -->
   </ion-header>
   
-  <ion-content no-lines no-padding>
-      <div class="item-main-div" *ngFor="let item of showableData; let i=index;">
+  <ion-content no-lines no-padding style="background-color: #f8f8f8">
+      <img src="./assets/imgs/emptybag.png"   style="margin-top:100px" *ngIf="showableData == ''"/>
+      <div class="item-main-div" *ngFor="let item of showableData; let i=index;" style="background-color: #ffff">
         <ion-item no-lines no-padding class="custom-item">
-            <img item-start class="item-img" src="{{item.img}}">
+            <img item-start class="item-img" src="{{item.orderImage}}">
             <div>
               <div class="div-one">
-                  <div class="div-one-first">{{item.name}}</div>
-                  <h6 class="div-one-second">Details: 1 item</h6>
+                  <div class="div-one-first">{{item.subcat_name}}  {{item.totalOrders>1?'+':''}}{{item.totalOrders>1?item.totalOrders-1:''}}</div>
+                  <h6 class="div-one-second">Order Date: {{item.bookingDate}}</h6>
+                  <h6 class="div-one-second">Expected Time: {{item.bookingTime}}</h6>
               </div>
               <div class="div-two">
-                    <!-- <div class="div-two-first"><span><strong>Price-</strong> 90/-</span> </div> -->
-                    <div class="div-two-second" (click)="trackOrder()"> Track Order</div>
-                    <div><ion-badge class="{{item?.status == 'Cancel' || item?.status == 'Complete' ? 'badge-complete' : 'badge-other'}}">
-                      {{item.status}}
+                    <div class="div-two-second" (click)="trackOrder(item)"> View Details</div>
+                    <div><ion-badge class="{{item?.bookingStatus == 'CANCEL' || item?.bookingStatus == 'END' ? 'badge-complete' : 'badge-other'}}">
+                      {{item.bookingStatus}}
                       </ion-badge></div>
   
               </div>

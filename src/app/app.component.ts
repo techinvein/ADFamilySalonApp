@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
+ 
   rootPage: any = "HomePage";
   // rootPage:any = "PhoneNumberAddPage";
 
@@ -23,7 +23,8 @@ export class MyApp {
       { title: 'Home', component: "HomePage" },
       { title: 'Profile', component: "ProfilePage" },
       { title: 'My Orders', component: "HistoryPage" },
-      { title: 'My Cart', component: "CartPage" }
+      { title: 'My Cart', component: "CartPage" },
+      { title: 'About Us', component: "AboutusPage" }
     ];
 
   }
@@ -52,7 +53,8 @@ export class MyApp {
     //   })
     // })
 
-    // firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
+      //firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
+    firebase.auth().signInWithEmailAndPassword("s@g.com","123456")
     
     firebase.auth().onAuthStateChanged((user)=>{
       if(user) {
@@ -60,7 +62,7 @@ export class MyApp {
         this.rootPage = "HomePage"
       }
       else {
-        this.rootPage = "PhoneNumberAddPage"
+      this.rootPage = "PhoneNumberAddPage"
         console.log('no user')
       }
     })

@@ -4,13 +4,6 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import * as firebase from 'firebase';
 
-/**
- * Generated class for the CartPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-cart',
@@ -18,11 +11,13 @@ import * as firebase from 'firebase';
 })
 export class CartPage {
   payMethod:any = "Cash after Service";
-  allCartProducts: any = [];
+  allCartProducts:any = [];;
   cartTotal: any;
   currentUser: any
 
   constructor(public navCtrl: NavController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public modalCtrl: ModalController) {
+    console.log('ionViewDidLoad CartPage');
+    
   }
 
   ionViewDidLoad() {
@@ -30,7 +25,6 @@ export class CartPage {
     this.currentUser = firebase.auth().currentUser.uid;
     if(this.currentUser) {
       firebase.database().ref('users/' + this.currentUser + '/cart/').on('value',(snap)=>{
-        console.log(snap.val());
         if(snap.val()) {
           let allProducts = snap.val();
           let cartProducts = []
@@ -43,12 +37,12 @@ export class CartPage {
           this.cartTotalCalc()
         }
         else {
+          console.log(this.allCartProducts);
           this.allCartProducts = []
         }
       })
     }
   }
-
   cartTotalCalc() {
     let cartTotal = 0;
     for(let i=0; i< this.allCartProducts.length; i++) {
@@ -56,7 +50,6 @@ export class CartPage {
     }
     this.cartTotal = cartTotal;
   }
-
   increment(item) {
     let price = item.original_price * (item.qty + 1)
     firebase.database().ref('users/' + this.currentUser + '/cart/' + item.uid + '/').update({
@@ -109,9 +102,7 @@ export class CartPage {
     actionSheet.present();
   }
   continue(){
-    let profileModal = this.modalCtrl.create('SlotBookingPage', { userId: 8675309 });
-    profileModal.present();
-    
+    this.navCtrl.push('AdressModalPage',{orderData:this.allCartProducts,orderPrice:this.cartTotal})
   }
 
 }

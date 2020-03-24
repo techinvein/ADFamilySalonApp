@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
+import * as firebase from 'firebase';
 @IonicPage()
 @Component({
   selector: 'page-history',
@@ -8,31 +8,58 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
   public ordersegment:any = "current";
-  public showableData:any;
-
+  public showableData:any = [];
+  public currentUser:any;
   allItems={
-    current:[
-      {name: 'Hair Styling', status:"Pending", img: "../../assets/imgs/g2.jpg"},
-      {name: 'Make Up', status:"Approved", img: "../../assets/imgs/makeup.jpg"},
-      {name: 'Manicure', status:"Pending", img: "../../assets/imgs/manicure.jpg"},
-      {name: 'Trimming', status:"Approved", img: "../../assets/imgs/trimming.jpg"},
-      {name: 'Pedicure', status:"Pending", img: "https://www.adfamilysalon-academy.com/images/pedicure.jpg"}
-    ],
-    complete:[
-      {name: 'Pedicure', status:"Cancel", img: "https://www.adfamilysalon-academy.com/images/pedicure.jpg"},
-      {name: 'Threading', status:"Complete", img: "https://www.adfamilysalon-academy.com/images/threading.jpg"},
-      {name: 'Hair Treatment', status:"Cancel", img: "https://www.adfamilysalon-academy.com/images/hair-treatment.jpg"},
-      {name: 'Trimming', status:"Cancel", img: "../../assets/imgs/trimming.jpg"},
-      {name: 'Manicure', status:"Complete", img: "https://www.adfamilysalon-academy.com/images/manicure.jpg"},
-      {name: 'Manicure', status:"Cancel", img: "../../assets/imgs/manicure.jpg"},
-      {name: 'Hair Styling', status:"Complete", img: "../../assets/imgs/g2.jpg"},
-      {name: 'Make Up', status:"Complete", img: "../../assets/imgs/makeup.jpg"}
-    ]
-    
+    current:[],
+    complete:[]
     }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.showableData = this.allItems.current;
+    // NEW ACCEPTED START END
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+    this.currentUser = firebase.auth().currentUser.uid;
+    firebase.database().ref('users/' + this.currentUser + '/my_booking/').on('value',(snap)=>{
+      if(snap.val()) {
+        let allBookings = snap.val();
+        console.log(snap.val())
+        var current = [];
+        var complete = [];
+        this.allItems={
+          current:[],
+          complete:[]
+          }
+        for(let key in allBookings){
+          if(allBookings[key].bookingStatus == 'END' || allBookings[key].bookingStatus == 'CANCEL'){
+            allBookings[key].rootKey = key;
+            allBookings[key].totalOrders =  allBookings[key].orders.length;
+            allBookings[key].orderImage =  allBookings[key].orders[0].image;
+            allBookings[key].subcat_name = allBookings[key].orders[0].subcat_name
+            complete.push(allBookings[key])
+          }else{
+            allBookings[key].rootKey = key;
+            allBookings[key].totalOrders =  allBookings[key].orders.length;
+            allBookings[key].orderImage =  allBookings[key].orders[0].image;
+            allBookings[key].subcat_name = allBookings[key].orders[0].subcat_name
+            current.push(allBookings[key])
+          }
+        }
+        if(current){
+          this.showableData = current.reverse();
+          this.allItems.current = current
+          loading.dismiss();
+        }
+        if(complete){
+          this.allItems.complete = complete
+          loading.dismiss();
+        }
+       
+      }
+    })
   }
 
   ionViewDidLoad() {
@@ -40,14 +67,17 @@ export class HistoryPage {
   }
   segmentChange(value){
     let vv = value;
-    this.showableData = this.allItems[vv]
+    this.showableData = this.allItems[vv].reverse()
   }
   
-
-  trackOrder(){
-    this.navCtrl.push("TrackOrderPage")
+  trackOrder(item){
+    console.log(item)
+    this.navCtrl.push("TrackOrderPage",{data:item})
   }
 
+  viewOrder(){
+
+  }
   checkout(){
     this.navCtrl.push("CartPage");
   }

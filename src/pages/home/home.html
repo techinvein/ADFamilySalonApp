@@ -5,12 +5,12 @@
     </button>
     <ion-title>AD SALOON</ion-title>
     <ion-buttons end>
-      <button ion-button>
+      <!-- <button ion-button>
         <ion-icon name="search" style="font-size:26px"></ion-icon>
-      </button>
+      </button> -->
       <button id="notification-button" ion-button (click)="checkout()">
           <ion-icon name="cart" style="font-size:27px">
-            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
+            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">{{cartTotal && cartTotal>0?cartTotal:0}}</ion-badge>
           </ion-icon>              
       </button>
       </ion-buttons>

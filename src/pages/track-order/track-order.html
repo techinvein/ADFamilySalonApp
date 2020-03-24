@@ -3,13 +3,10 @@
   <ion-navbar color="dark">
     <ion-title>Order Track</ion-title>
     <ion-buttons end>
-      <button ion-button>
-        <ion-icon name="search" style="font-size:26px"></ion-icon>
-      </button>
+      
       <button id="notification-button" ion-button >
           <ion-icon name="cart" style="font-size:27px">
-            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
-            
+            <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>         
           </ion-icon>              
       </button>
       </ion-buttons>
@@ -21,40 +18,95 @@
       <ion-row>
         <ion-col col-6 class="item-col">
           <div class="item-col-one-div">
-            <div class="item-col-one-div-one">ORDER NAME</div>
-            <div class="item-col-one-div-two">Bridal Package</div>
+            <div class="item-col-one-div-one">Expected Date Time</div>
+            <div class="item-col-one-div-two">{{allDetails.bookingDate}}</div>
+            <div class="item-col-one-div-two" style="margin-top:6px">{{allDetails.bookingTime}}</div>
+
+            <div class="item-col-one-div-one" style="margin-top:16px;">GRAND TOTAL</div>
+            <div  style="font-size:18px;text-align:left;color:rgb(2, 141, 48)"> ₹{{allDetails.orderPrice}}</div>
+
           </div>
         </ion-col>
         <ion-col col-6 class="item-col">
             <div >
                 <div class="item-col-two-div-one" >ORDER NUMBER</div>
-                <div class="item-col-two-div-two" >#ABC122JNCD532</div>
+                <div class="item-col-two-div-two" >{{allDetails.bookingId}}</div>
+                <div class="item-col-one-div-one" style="margin-top:55px;margin-left:22px;font-size:14px;color:rgb(0, 76, 175)" (click)="viewDetails()">SEE ORDER DETAILS</div>
+                
+            </div>
+        </ion-col>
+      </ion-row>
+  </ion-item>
+  <ion-item no-lines no-padding class="custom-item" style="margin-top:4px" *ngIf="allDetails.bookingStatus == 'ACCEPTED' || allDetails.bookingStatus == 'START' ">
+      <ion-row>
+        <ion-col col-6 class="item-col" >
+          <div class="item-col-one-div">
+            <div class="item-col-one-div-one">CONTACT PERSON</div>
+            <div class="item-col-one-div-two" >{{allDetails.contact_person}}</div>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="item-col">
+            <div >
+                <div class="item-col-two-div-one" style="color:green" (click)="callNow()">CALL NOW</div>
+                <div class="item-col-two-div-two" >+91{{allDetails.contact_person_mobile}}</div>
             </div>
         </ion-col>
       </ion-row>
   </ion-item>
 
-  <div class="status-main-div">
+  <ion-item no-lines no-padding class="custom-item" style="margin-top:4px" *ngIf="allDetails.bookingStatus == 'ACCEPTED' || allDetails.bookingStatus == 'START' ">
+      <ion-row>
+        <ion-col col-12 class="item-col" >
+          <div class="item-col-one-div">
+            <div class="item-col-one-div-one">ORDER ADDRESS</div>
+            <div class="item-col-one-div-two" > Full Name - {{this.allDetails.orderAddress.fullName}}</div>
+            <div class="item-col-one-div-two" > House/ Flat No - {{this.allDetails.orderAddress.flatOrHouseNo}}</div>
+            <div class="item-col-one-div-two" > street/ Locality - {{this.allDetails.orderAddress.streetOrLocality}}</div>
+            <div class="item-col-one-div-two" > Land Mark - {{this.allDetails.orderAddress.landmark}}</div>
+            <div class="item-col-one-div-two" > Pin Code - {{this.allDetails.orderAddress.Pincode}}</div>
+            <div class="item-col-one-div-two" > Contact No - {{this.allDetails.orderAddress.mobileNo}}</div>
+          </div>
+        </ion-col>
+       
+      </ion-row>
+  </ion-item>
+  <div class="status-main-div" *ngIf="allDetails.bookingStatus != 'CANCEL'">
 
     <div class="status-div">
-      <!-- <div> -->
+
         <div class="sub-div-one">
 
           <div>
               <div class="circle-div"></div>
               <div class="circle-line"></div>
-          </div>     
-          <div>
+          </div> 
+          
+          
+          <div *ngIf="allDetails.bookingStatus == 'ACCEPTED' || allDetails.bookingStatus== 'START' || allDetails.bookingStatus== 'END'">
               <div class="circle-div"></div>
               <div class="circle-line"></div>
           </div> 
-          <div>
+          <div *ngIf="allDetails.bookingStatus == 'PENDING'">
               <div class="active-circle-div"></div>
               <div class="active-circle-line"></div>
           </div> 
-          <div>
+
+
+          <div *ngIf="allDetails.bookingStatus== 'START' || allDetails.bookingStatus== 'END'">
+              <div class="circle-div"></div>
+              <div class="circle-line"></div>
+          </div> 
+
+          <div *ngIf="allDetails.bookingStatus == 'ACCEPTED' || allDetails.bookingStatus == 'PENDING' ">
               <div class="active-circle-div"></div>
-                <!-- <div class="active-circle-line"></div> -->
+              <div class="active-circle-line"></div>
+          </div> 
+
+          <div *ngIf="allDetails.bookingStatus == 'END'">
+              <div class="circle-div"></div>
+          </div>
+          <div *ngIf="allDetails.bookingStatus == 'ACCEPTED' || allDetails.bookingStatus == 'PENDING' || allDetails.bookingStatus == 'START'">
+              <div class="active-circle-div"></div>
           </div>            
         </div>
 
@@ -74,35 +126,64 @@
             </div>
         </div>
 
-        <div>
-            <div class="status-text-div">
+        <div>  
+          <div class="active-status-text-div" *ngIf="allDetails.bookingStatus == 'PENDING'">
               <div class="text-one">Order Placed</div>
-              <div class="text-two">We have received your order</div>
+              <div class="text-two">Waiting for approve</div>
             </div>
-            <div class="status-text-div">
+            <div class="status-text-div" *ngIf="allDetails.bookingStatus != 'PENDING'">
+                <div class="text-one">Order Placed</div>
+                <div class="text-two">Waiting for approve</div>
+            </div>
+            <div class="active-status-text-div" *ngIf="allDetails.bookingStatus == 'ACCEPTED'">
+                <div class="text-one">Order Confirmed</div>
+                <div class="text-two">Your order has been confirmed</div>
+            </div>
+            <div class="status-text-div" *ngIf="allDetails.bookingStatus != 'ACCEPTED'">
               <div class="text-one">Order Confirmed</div>
               <div class="text-two">Your order has been confirmed</div>
             </div>
-            <div class="active-status-text-div">
+            
+            <div class="active-status-text-div" *ngIf="allDetails.bookingStatus == 'START'">
               <div class="text-one">Order Processed</div>
-              <div class="text-two">We are preparing your order</div>
+              <div class="text-two">Our Expart start your Service</div>
             </div>
-            <div class="status-text-div">
+
+            <div class="status-text-div" *ngIf="allDetails.bookingStatus != 'START'">
+                <div class="text-one">Order Processed</div>
+                <div class="text-two">Our Expart start your service</div>
+              </div>
+
+            <div class="active-status-text-div" *ngIf="allDetails.bookingStatus == 'END'">
               <div class="text-one">Order Complete</div>
-              <div class="text-two">Your order is ready for pickup</div>
+              <div class="text-two">We Complete Your Service</div>
             </div>
+            <div class="status-text-div" *ngIf="allDetails.bookingStatus != 'END'">
+                <div class="text-one">Order Complete</div>
+                <div class="text-two">We Complete Your Service</div>
+              </div>
         </div>
-        
- 
     </div>
-
-    <!-- order_placed.svg
-    confirm-order.svg
-  chef.svg
-  pickup.svg
-
--->
-
   </div>
 
 </ion-content>
+<ion-footer style="z-index:0;padding-bottom:0px" *ngIf="allDetails.bookingStatus == 'PENDING' || allDetails.bookingStatus == 'ACCEPTED' ">
+    <ion-card style="margin:0;width:100%;border-bottom: 1px solid #bfbfbf;box-shadow:none">
+      </ion-card>
+      <ion-grid>
+          <ion-row >
+              <ion-col col-6 style="padding-bottom:0px"><button ion-button  icon-end style="background:#3d3d3d;box-shadow:none;border-radius:6px;height:50px;width:100%" (click)="reschedule()" >
+                  Reschedule/ Help
+                </button>
+              </ion-col>
+              <ion-col col-6 style="padding-bottom:0px"><button ion-button  icon-end style="background:#ff2d2d;box-shadow:none;border-radius:6px;height:50px;width:100%" (click)="cancelOrder()">
+                  Cancel
+                  <ion-icon name="ios-arrow-forward" style="font-size:28px;padding-left:1.4em"></ion-icon>
+                </button>
+              </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+    
+  </ion-footer> 
+  

@@ -16,8 +16,12 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
   templateUrl: 'item-details.html',
 })
 export class ItemDetailsPage {
-  allItems=[1,1,1,1,1,1,1,1,1,1,1]
+  bookingData:any;
   constructor(public navCtrl: NavController,public viewCtrl:ViewController,public modalCtrl: ModalController, public navParams: NavParams) {
+    let orderDetails = this.navParams.get('bookingData');
+    if(orderDetails) {
+      this.bookingData = orderDetails
+    }
   }
 
   ionViewDidLoad() {

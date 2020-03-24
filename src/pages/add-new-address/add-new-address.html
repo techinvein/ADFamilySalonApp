@@ -1,0 +1,46 @@
+<ion-content class="main-view">
+  <div class="overlay" (click)="dismiss()"></div>
+  <div class="modal_content">
+    <img src="../assets/imgs/addAddress.png">
+      <div style="width: 90vw; margin: 0 auto;margin-top:7px">
+          <ion-item no-lines style="background:white">
+            <ion-input type="text" placeholder="Full Name"  [(ngModel)]="address.fullName"></ion-input>
+          </ion-item>
+        </div>
+        <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+            <ion-item no-lines style="background:white">
+              <ion-input type="text" placeholder="Mobile Number"  [(ngModel)]="address.mobileNo"></ion-input>
+            </ion-item>
+          </div>
+          <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+              <ion-item no-lines style="background:white">
+                <ion-input type="text" placeholder="Pin code"  [(ngModel)]="address.Pincode"></ion-input>
+              </ion-item>
+            </div>
+          
+            <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+                <ion-item no-lines style="background:white">
+                  <ion-input type="text" placeholder="Flat/ House No./ Building"  [(ngModel)]="address.flatOrHouseNo"></ion-input>
+                </ion-item>
+              </div>
+              <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+                  <ion-item no-lines style="background:white">
+                    <ion-input type="text" placeholder="Colony/ Street/ Locality"  [(ngModel)]="address.streetOrLocality"></ion-input>
+                  </ion-item>
+                </div>
+                <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+                    <ion-item no-lines style="background:white">
+                      <ion-input type="text" placeholder="Land Mark"  [(ngModel)]="address.landmark"></ion-input>
+                    </ion-item>
+                </div>
+                <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+                    <ion-item no-lines style="background:white">
+                      <ion-input type="text" placeholder="City"  [(ngModel)]="address.city" readonly></ion-input>
+                    </ion-item>
+                </div>
+                <button style="width: 90vw;height:13vw; margin: 0 auto;  margin-top: 4vw" ion-button block color="dark" (click)="addAddress()">Add Address</button>
+  </div>
+</ion-content>
+<ion-footer>
+  
+</ion-footer>

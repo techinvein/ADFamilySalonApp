@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,ActionSheetController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController,ActionSheetController, NavParams, ViewController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-
+import * as firebase from 'firebase';
 /**
  * Generated class for the SlotBookingPage page.
  *
@@ -16,31 +16,66 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 })
 export class SlotBookingPage {
   myDate:any;
-  fromTime:any;
-  toTime:any;
-  fromTimeSlot:any;
-  toTimeSlot:any;
+  selectedTimeSlot:any = 0;
+  TimeSlots:any;
   data:any;
-  constructor(public navCtrl: NavController,public modalCtrl: ModalController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public viewCtrl:ViewController) {
-    this.myDate = '2019-07-09';
-    
-   
-   
-    
+  currentDate:any;
+  orderData:any;
+  maxdate:any;
+  currentUser:any;
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public modalCtrl: ModalController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public viewCtrl:ViewController) {
+    var d = new Date();
+    let date = d.getDate() >10?d.getDate():'0'+d.getDate()
+    let mm = d.getMonth()+1;
+    let month =  mm>10?mm:'0'+mm
+    let year = d.getFullYear();
+    this.currentDate = year + '-'+ month + '-'+ date;;
+    this.myDate =  year + '-'+ month + '-'+ date;
+    this.maxdate =  year + '-'+ '12' + '-'+ '31';
+    let orderDetails = this.navParams.get('orderData');
+    if(orderDetails) {
+      this.orderData = orderDetails
+      console.log(this.orderData)
+    }
+    this.currentUser = firebase.auth().currentUser.uid;
   }
-  pay(){
-    this.viewCtrl.dismiss();
-    let profileModal = this.modalCtrl.create('ItemDetailsPage', { userId: 8675309 });
-    profileModal.present();
-    
+  bookNow(){
+    let loading = this.loadingCtrl.create({
+      content: 'Request For Booking...'
+    }); 
+    loading.present();
+
+    let d = new Date();
+    let n = d.getTime();
+     let bookingData = {
+       bookingId:'ADFS'+'/'+ n,
+       bookingDate:this.myDate,
+       bookingTime:this.TimeSlots[this.selectedTimeSlot],
+       orderCreatedDate:new Date().toString(),
+       orderAddress:this.orderData.orderAddres,
+       bookingStatus:'PENDING',
+       userUId:this.orderData.orderAddres.userUID,
+       orders: this.orderData.orders,
+       orderPrice:this.orderData.orderPrice
+     }
+     console.log(bookingData)
+     if(bookingData){
+       firebase.database().ref('users/' + this.currentUser + '/my_booking/').push(bookingData).then((res)=>{
+        console.log(res.key)
+        firebase.database().ref('bookings/'+res.key).set(bookingData).then(()=>{
+          firebase.database().ref('users/' + this.currentUser + '/cart/').remove();
+          loading.dismiss();
+          let profileModal = this.modalCtrl.create('ItemDetailsPage', { bookingData: bookingData });
+          profileModal.present();
+        })
+       })
+       
+     }
   }
  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SlotBookingPage');
-    this.fromTime =['9:00 AM - 10:00 AM','10:00 AM - 11:00 AM','11:00 AM - 12:00 PM','12:00 PM - 01:00 PM','01:00 PM - 02:00 PM','02:00 PM - 03:00 PM','03:00 PM - 04:00 PM','04:00 PM - 05:00 PM','05:00 PM - 06:00 PM','06:00 PM - 07:00 PM','07:00 PM - 08:00 PM','08:00 PM - 09:00 PM',]
-    this.toTime =['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM',,'5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM',,'8:00 PM','8:30 PM','9:00 PM',]
-    this.fromTimeSlot = '0'
-    this.toTimeSlot = 2
+    this.TimeSlots =['9:00 AM - 12:00 PM','12:00 PM - 03:00 PM','03:00 PM - 06:00 PM','06:00 PM - 09:00 PM',]
+    
   }
 
   dismiss(){
