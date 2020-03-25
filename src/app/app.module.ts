@@ -8,6 +8,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { CallNumber } from '@ionic-native/call-number';
+
 var firebaseConfig = {
   apiKey: "AIzaSyAn9HZ9eS9M1gHgHNg4LsgJtbto5oSAPfo",
   authDomain: "salon-ef6a7.firebaseapp.com",
@@ -37,6 +39,7 @@ firebase.initializeApp(firebaseConfig);
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

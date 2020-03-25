@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { CallNumber } from '@ionic-native/call-number';
 @IonicPage()
 @Component({
   selector: 'page-track-order',
@@ -10,7 +11,8 @@ export class TrackOrderPage {
   allDetails:any;
   orders:any = [];
   currentUser:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  adminMobileNo: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private callNumber: CallNumber, public loadingCtrl: LoadingController) {
     this.currentUser = firebase.auth().currentUser.uid;
    
     let orderDetails = this.navParams.get('data');
@@ -22,7 +24,15 @@ export class TrackOrderPage {
   }
 
   ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     console.log('ionViewDidLoad TrackOrderPage');
+    firebase.database().ref('adminInfo/Mobile').once('value',(snap)=>{
+      this.adminMobileNo = snap.val();
+      loading.dismiss();
+    })
   }
   cancelOrder(){
     if( this.allDetails.bookingStatus == 'PENDING'){
@@ -69,7 +79,10 @@ export class TrackOrderPage {
           {
             text: 'CALL NOW', 
             handler: () => {
-              console.log('Agree clicked');
+              this.callNumber.callNumber(this.adminMobileNo, true)
+              .then(res => console.log('Launched dialer!', res))
+              .catch(err => console.log('Error launching dialer', err));
+              // console.log('Agree clicked');
             }
           }
         ]
@@ -93,6 +106,10 @@ export class TrackOrderPage {
           {
             text: 'CALL NOW', 
             handler: () => {
+              this.callNumber.callNumber(this.adminMobileNo, true)
+              .then(res => console.log('Launched dialer!', res))
+              .catch(err => console.log('Error launching dialer', err));
+
               console.log('Agree clicked');
             }
           }
@@ -104,5 +121,11 @@ export class TrackOrderPage {
 
   viewDetails(){
    this.navCtrl.push("ViewOrdersPage",{data:this.orders})
+  }
+
+  callNow() {
+    this.callNumber.callNumber(this.allDetails.contact_person_mobile, true)
+    .then(res => console.log('Launched dialer!', res))
+    .catch(err => console.log('Error launching dialer', err));
   }
 }
