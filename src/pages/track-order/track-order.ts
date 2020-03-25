@@ -42,7 +42,12 @@ export class TrackOrderPage {
             firebase.database().ref('users/' + this.currentUser + '/my_booking/' + this.allDetails.rootKey + '/').update({
               bookingStatus:'CANCEL'
              }).then(()=>{
-               this.navCtrl.pop();
+              firebase.database().ref('bookings/' + this.allDetails.rootKey + '/').update({
+                bookingStatus:'CANCEL'
+               }).then(()=>{
+                this.navCtrl.pop();
+               })
+               
              })
         
           }
