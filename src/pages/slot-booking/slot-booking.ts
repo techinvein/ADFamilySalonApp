@@ -40,6 +40,7 @@ export class SlotBookingPage {
     this.currentUser = firebase.auth().currentUser.uid;
   }
   bookNow(){
+    this.viewCtrl.dismiss().then(()=>{
     let loading = this.loadingCtrl.create({
       content: 'Request For Booking...'
     }); 
@@ -71,6 +72,7 @@ export class SlotBookingPage {
        })
        
      }
+    });
   }
  
   ionViewDidLoad() {
