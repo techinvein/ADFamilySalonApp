@@ -54,7 +54,7 @@ export class HistoryPage {
           loading.dismiss();
         }
         if(complete){
-          this.allItems.complete = complete
+          this.allItems.complete = complete.reverse()
           loading.dismiss();
         }
        
@@ -67,7 +67,7 @@ export class HistoryPage {
   }
   segmentChange(value){
     let vv = value;
-    this.showableData = this.allItems[vv].reverse()
+    this.showableData = this.allItems[vv];
   }
   
   trackOrder(item){
