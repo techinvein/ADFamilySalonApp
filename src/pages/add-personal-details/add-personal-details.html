@@ -1,55 +1,3 @@
-<!-- <ion-content no-padding>
-    <div class="content-div">
-      <div class="logo-bacground-div">
-      
-      </div>
-      <div class="item-div">
-          <div class="custom-item-div">
-            <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="Text" placeholder="Mobile number" value=9038505480 maxlength="10" readonly ></ion-input>
-            </ion-item>
-          </div>
-          <div class="custom-item-div">
-            <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="email" placeholder="Email address"></ion-input>
-            </ion-item>
-          </div>
-          <div class="custom-item-div">
-            <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="text" placeholder="Your first name"></ion-input>
-            </ion-item>
-          </div>
-          <div class="custom-item-div">
-            <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="text" placeholder="Your last name"></ion-input>
-            </ion-item>
-          </div>
-          <div class="custom-item-div">
-            <ion-item no-lines class="custom-item">
-              <ion-input class="custom-input" type="text" placeholder="Your Address"></ion-input>
-            </ion-item>
-          </div>
-      </div>
-
-    </div>
-
-  </ion-content>
-  <ion-footer class="custom-footer" no-border>
-      <button class="footer-button" ion-button block (click)="clickContinue()">Continue</button>
-  </ion-footer> -->
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons> 
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-content scroll="false">
   <div class="splash-bg"></div>
   <div class="splash-info">
@@ -63,25 +11,21 @@
     
       <ion-list>
           <ion-item>
-              <ion-label floating>Mobile Number</ion-label>
-              <ion-input type="text"></ion-input>
-          </ion-item>
-          <ion-item>
               <ion-label floating>First Name</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" [(ngModel)]="firstName"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Last Name</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="lastName"></ion-input>
       </ion-item>
     <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="email" ></ion-input>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
           <ion-label floating>Address</ion-label>
-          <ion-input type="text" ></ion-input>
-      </ion-item>
+          <ion-input type="text" [(ngModel)]="address"></ion-input>
+      </ion-item> -->
         </ion-list>
          <p style="text-align: center;font-size: 12;color:rgb(248, 77, 77)" *ngIf="errMsg != ''">{{errMsg}}</p>
     <button ion-button  round  color="dark" (click)="clickContinue()" style="display:inherit;margin:auto">Sign UP Now</button>

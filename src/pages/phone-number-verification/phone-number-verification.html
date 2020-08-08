@@ -9,11 +9,14 @@
       <div class="sub-three">Enter the verification code we just sent you on your mobile</div>
       <div class="sub-five">
         <ion-item no-lines no-padding class="item-class">
-            <ion-input class="input-class" type="tel" placeholder="Verification code" maxLength="10"></ion-input>
+            <ion-input class="input-class" type="number" placeholder="Verification code" maxLength="10" [(ngModel)]="verificationCode"></ion-input>
         </ion-item>
       </div>
-      <div *ngIf="value != 0" class="sub-four">
+      <!-- <div *ngIf="value != 0" class="sub-four">
           <span class="sub-span">{{value? value.toString().length >1 ? '00:'+value : '00:0'+value : "00:00"}}</span>
+      </div> -->
+      <div *ngIf="value != 0" class="sub-four">
+        <span class="sub-span">{{clockDisplay}}</span>
       </div>
       <div *ngIf="value == 0" class="sub-four">If you don't receive a code! <span class="sub-span" (click)="resendClick()">Resend</span></div>
 

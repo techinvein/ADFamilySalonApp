@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController,LoadingController,ActionSheetController, NavParams, ViewController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 /**
  * Generated class for the SlotBookingPage page.
  *
@@ -23,7 +25,7 @@ export class SlotBookingPage {
   orderData:any;
   maxdate:any;
   currentUser:any;
-  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public modalCtrl: ModalController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public viewCtrl:ViewController) {
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController,public modalCtrl: ModalController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public viewCtrl:ViewController, public globalService: GlobalServiceProvider) {
     var d = new Date();
     let date = d.getDate() >10?d.getDate():'0'+d.getDate()
     let mm = d.getMonth()+1;
@@ -37,7 +39,7 @@ export class SlotBookingPage {
       this.orderData = orderDetails
       console.log(this.orderData)
     }
-    this.currentUser = firebase.auth().currentUser.uid;
+    this.currentUser = this.globalService.firebaseUid;
   }
   bookNow(){
     this.viewCtrl.dismiss().then(()=>{
@@ -48,30 +50,31 @@ export class SlotBookingPage {
 
     let d = new Date();
     let n = d.getTime();
-     let bookingData = {
-       bookingId:'ADFS'+'/'+ n,
-       bookingDate:this.myDate,
-       bookingTime:this.TimeSlots[this.selectedTimeSlot],
-       orderCreatedDate:new Date().toString(),
-       orderAddress:this.orderData.orderAddres,
-       bookingStatus:'PENDING',
-       userUId:this.orderData.orderAddres.userUID,
-       orders: this.orderData.orders,
-       orderPrice:this.orderData.orderPrice
-     }
+    let bookingData = {
+      bookingId:'ADFS'+'/'+ n,
+      bookingDate:this.myDate,
+      bookingTimeStamp: new Date(this.myDate).toString(),
+      bookingTime:this.TimeSlots[this.selectedTimeSlot],
+      orderCreatedDate:new Date().toString(),
+      orderAddress:this.orderData.orderAddres,
+      bookingStatus:'PENDING',
+      userUId:this.orderData.orderAddres.userUID,
+      orders: this.orderData.orders,
+      orderPrice:this.orderData.orderPrice
+    }
      console.log(bookingData)
-     if(bookingData){
-       firebase.database().ref('users/' + this.currentUser + '/my_booking/').push(bookingData).then((res)=>{
-        console.log(res.key)
-        firebase.database().ref('bookings/'+res.key).set(bookingData).then(()=>{
-          firebase.database().ref('users/' + this.currentUser + '/cart/').remove();
-          loading.dismiss();
-          let profileModal = this.modalCtrl.create('ItemDetailsPage', { bookingData: bookingData });
-          profileModal.present();
+      if(bookingData){
+        firebase.database().ref('users/' + this.currentUser + '/my_booking/').push(bookingData).then((res)=>{
+          console.log(res.key)
+          firebase.database().ref('bookings/'+res.key).set(bookingData).then(()=>{
+            firebase.database().ref('users/' + this.currentUser + '/cart/').remove();
+            loading.dismiss();
+            let profileModal = this.modalCtrl.create('ItemDetailsPage', { bookingData: bookingData });
+            profileModal.present();
+          })
         })
-       })
-       
-     }
+        
+      }
     });
   }
  

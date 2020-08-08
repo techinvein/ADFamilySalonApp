@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ActionSheetController } from 'ionic-angular/components/action-sheet/action-sheet-controller';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 
 @IonicPage()
 @Component({
@@ -15,14 +17,14 @@ export class CartPage {
   cartTotal: any;
   currentUser: any
 
-  constructor(public navCtrl: NavController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public modalCtrl: ModalController, public globalService: GlobalServiceProvider) {
     console.log('ionViewDidLoad CartPage');
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');
-    this.currentUser = firebase.auth().currentUser.uid;
+    this.currentUser = this.globalService.firebaseUid;
     if(this.currentUser) {
       firebase.database().ref('users/' + this.currentUser + '/cart/').on('value',(snap)=>{
         if(snap.val()) {

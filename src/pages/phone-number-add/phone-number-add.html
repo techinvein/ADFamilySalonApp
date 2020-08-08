@@ -9,12 +9,12 @@
     <div class="sub-four">We will sent you a code to your mobile number</div>
     <div class="sub-five">
       <ion-item no-lines no-padding class="item-class">
-          <ion-input class="input-class" type="tel" placeholder="Enter your mobile" maxLength="10"></ion-input>
+          <ion-input class="input-class" type="tel" placeholder="Enter your mobile" maxLength="10" [(ngModel)]="phoneNumber"></ion-input>
       </ion-item>
     </div>
 
     <div class="sub-six">
-      <button class="sub-six-btn" ion-button round (click)="clickContinue()">Send</button>
+      <button class="sub-six-btn" ion-button round (click)="phoneNoVerify()">Send</button>
     </div>
 
 

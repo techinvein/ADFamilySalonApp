@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AddPersonalDetailsPage } from './add-personal-details';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,6 @@ import { AddPersonalDetailsPage } from './add-personal-details';
   ],
   imports: [
     IonicPageModule.forChild(AddPersonalDetailsPage),
-  ],
+  ]
 })
 export class AddPersonalDetailsPageModule {}

@@ -8,8 +8,13 @@
           </ion-item>
         </div>
         <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+          <ion-item no-lines style="background:white">
+            <ion-input type="text" placeholder="Mobile Number"  [(ngModel)]="address.mobileNo" disabled></ion-input>
+          </ion-item>
+        </div>
+        <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
             <ion-item no-lines style="background:white">
-              <ion-input type="text" placeholder="Mobile Number"  [(ngModel)]="address.mobileNo"></ion-input>
+              <ion-input type="text" placeholder="Alternate Mobile Number (Optional)"  [(ngModel)]="address.altMobileNo"></ion-input>
             </ion-item>
           </div>
           <div style="width: 90vw; margin: 0 auto;margin-top:4vw">

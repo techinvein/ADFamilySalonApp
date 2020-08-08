@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 @IonicPage()
 @Component({
   selector: 'page-track-order',
@@ -12,8 +14,8 @@ export class TrackOrderPage {
   orders:any = [];
   currentUser:any;
   adminMobileNo: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private callNumber: CallNumber, public loadingCtrl: LoadingController) {
-    this.currentUser = firebase.auth().currentUser.uid;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private callNumber: CallNumber, public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider) {
+    this.currentUser = this.globalService.firebaseUid;
    
     let orderDetails = this.navParams.get('data');
     if(orderDetails) {

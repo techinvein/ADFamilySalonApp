@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 @IonicPage()
 @Component({
   selector: 'page-add-new-address',
@@ -11,6 +13,7 @@ export class AddNewAddressPage {
   address={
     fullName:'',
     mobileNo:'',
+    altMobileNo:'',
     Pincode:'',
     flatOrHouseNo:'',
     streetOrLocality:'',
@@ -20,7 +23,7 @@ export class AddNewAddressPage {
   }
   orderData:any;
   price:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController,public modalCtrl: ModalController, public globalService: GlobalServiceProvider) {
     this.loadUserData()
     let orderDetails = this.navParams.get('orderData');
     let orderPrice = this.navParams.get('orderPrice');
@@ -35,7 +38,7 @@ export class AddNewAddressPage {
   }
 
   loadUserData(){
-    let currentUser = firebase.auth().currentUser.uid;
+    let currentUser = this.globalService.firebaseUid;
     if(currentUser) {
       firebase.database().ref('users/' + currentUser).once('value',(snap)=>{
         console.log(snap.val());
@@ -62,23 +65,46 @@ export class AddNewAddressPage {
       alert("Please enter Order Adress Nearest Locality");
     }else if(this.address.landmark == '' || this.address.landmark == undefined || this.address.landmark == null){
       alert("Adress Landmark is Mandatory");
-    }else if(! /^\d{10}$/.test(this.address.mobileNo)){
-      alert("Invalid Phone number, must be 10 digits")
-    }else if(! /^\d{6}$/.test(this.address.Pincode)){
+    }
+    // else if(! /^\d{10}$/.test(this.address.altMobileNo)){
+    //   alert("Invalid Phone number, must be 10 digits")
+    // }
+    else if(! /^\d{6}$/.test(this.address.Pincode)){
       alert("Invalid Pin number, must be 6 digits")
     }else{
-
-      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/saveAddress/').push(this.address).then(()=>{
-        this.viewCtrl.dismiss()
-        alert('Address added Successfully');
-        let allData = {
-          orders: this.orderData,
-          orderAddres:this.address,
-          orderPrice:this.price
+      if(this.address.altMobileNo) {
+        if(! /^\d{10}$/.test(this.address.altMobileNo)){
+          alert("Invalid Phone number, must be 10 digits")
         }
-        let slotModal = this.modalCtrl.create('SlotBookingPage',  { orderData:allData });
-            slotModal.present();
-      })
+        else {
+          this.address.altMobileNo = `+91${this.address.altMobileNo}`;
+          firebase.database().ref('users/' + this.globalService.firebaseUid + '/saveAddress/').push(this.address).then(()=>{
+            this.viewCtrl.dismiss()
+            alert('Address added Successfully');
+            let allData = {
+              orders: this.orderData,
+              orderAddres:this.address,
+              orderPrice:this.price
+            }
+            let slotModal = this.modalCtrl.create('SlotBookingPage',  { orderData:allData });
+                slotModal.present();
+          })
+        }
+      }
+      else {
+        firebase.database().ref('users/' + this.globalService.firebaseUid + '/saveAddress/').push(this.address).then(()=>{
+          this.viewCtrl.dismiss()
+          alert('Address added Successfully');
+          let allData = {
+            orders: this.orderData,
+            orderAddres:this.address,
+            orderPrice:this.price
+          }
+          let slotModal = this.modalCtrl.create('SlotBookingPage',  { orderData:allData });
+              slotModal.present();
+        })
+      }
+
     }
   }
   ionViewDidLoad() {

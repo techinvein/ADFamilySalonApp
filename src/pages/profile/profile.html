@@ -5,13 +5,12 @@
       </button>
       <ion-title>My Account</ion-title>
       <ion-buttons end>
-        <button ion-button>
+        <!-- <button ion-button>
           <ion-icon name="search" style="font-size:26px"></ion-icon>
-        </button>
+        </button> -->
         <button id="notification-button" ion-button (click)="checkout()">
             <ion-icon name="cart" style="font-size:27px" >
-              <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">5</ion-badge>
-              
+              <ion-badge id="notifications-badge" color="danger" style="line-height: 0.4;font-size: 13px;padding: 5px;height: 16px;font-weight: 200;">{{cartTotal && cartTotal>0?cartTotal:0}}</ion-badge>
             </ion-icon>              
         </button>
         </ion-buttons>
@@ -23,14 +22,15 @@
       <div class="content-class-sub">
   
           <div class="background-div">
-              <img class="background-img"  src="../../assets/imgs/cover.jpg">
+              <img class="background-img"  src="../../assets/imgs/cover2.jpg">
           </div>
           <div class="mainDiv">
               <div class="subDiv">
                   <div class="circleDiv">
-                      <img class="cImg" src="../../assets/imgs/profile.jpg">
+                      <!-- <img class="cImg" src="../../assets/imgs/profile.jpg"> -->
+                      <div id="profileImage" [ngStyle]="{'color': bgColor, 'background': fgColor}">{{prifileImage}}</div>
                       <!-- Icon  --> 
-                      <div class="iconDiv">
+                      <!-- <div class="iconDiv">
                         <div class="iconMainDiv">
                           <div>
                             <div class="iconSubDiv" (click)="uploadCam()">
@@ -38,7 +38,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <!-- Icon End  --> 
                   </div>
               </div>
@@ -49,16 +49,25 @@
       <div class="item-div">
   
         <ion-item>
-          <ion-label stacked>Name</ion-label>
-          <ion-input type="text" value="Denis Manning"></ion-input>
-          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+          <ion-label stacked>First Name</ion-label>
+          <ion-input type="text" [(ngModel)]="firstName" [disabled]="!isFNameEnabled"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickFirstName()" name="md-create" ></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Last Name</ion-label>
+          <ion-input type="text" [(ngModel)]="lastName" [disabled]="!isLNameEnabled"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickLastName()" name="md-create" ></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label stacked>Email address</ion-label>
-          <ion-input type="email" value="denismanning@gmail.com"></ion-input>
-          <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
+          <ion-input type="email" [(ngModel)]="email" [disabled]="!isEmailEnabled"></ion-input>
+          <ion-icon item-right class="itemIcon" (click)="clickEmail()" name="md-create" ></ion-icon>
         </ion-item>
         <ion-item>
+          <ion-label stacked>Mobile</ion-label>
+          <ion-input type="email" [(ngModel)]="mobileNumber" disabled></ion-input>
+        </ion-item>
+        <!-- <ion-item>
           <ion-label stacked>Address</ion-label>
           <ion-input type="text" value="310 bhawarkuva colony"></ion-input>
           <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
@@ -67,7 +76,7 @@
           <ion-label stacked>Password</ion-label>
           <ion-input type="password" value="123456"></ion-input>
           <ion-icon item-right class="itemIcon" (click)="clickCM()" name="md-create" ></ion-icon>
-        </ion-item>
+        </ion-item> -->
   
        
   
@@ -77,5 +86,5 @@
   
   </ion-content>
   <ion-footer class="footer-class">
-      <button class="footer-button" ion-button full>Update Profile</button>
+      <button class="footer-button" ion-button full (click)="updateProfile()">Update Profile</button>
   </ion-footer>

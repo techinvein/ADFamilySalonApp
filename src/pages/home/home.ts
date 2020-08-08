@@ -1,9 +1,11 @@
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController,LoadingController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController, NavParams, ModalController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 
 @IonicPage()
 @Component({
@@ -22,7 +24,7 @@ export class HomePage {
     maxResults: 5
   };
   banners:any = [];
-  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation, public globalService: GlobalServiceProvider, public modalCtrl: ModalController) {
     this.alldata = {
       male: [],
       female: []
@@ -101,18 +103,28 @@ export class HomePage {
   }
   
 
-  checkCartItem(){
-    let currentUser = firebase.auth().currentUser.uid;
+  async checkCartItem(){
+    console.log(this.globalService.firebaseUid);
+    
+    let currentUser = this.globalService.firebaseUid;
     if(currentUser) {
-      firebase.database().ref('users/' + currentUser + '/cart/').on('value',(snap)=>{
-        console.log(snap.val());
+      firebase.database().ref('users/' + currentUser + '/').on('value',(snap)=>{
+        console.log('userDetails',snap.val());
         if(snap.val()) {
-          let data = snap.val();
-          this.cartTotal = Object.keys(data).length;
-          
+          if(snap.val().cart) {
+            let data = snap.val().cart;
+            this.cartTotal = Object.keys(data).length;
+            
           }
+          else {
+            this.cartTotal = 0;
+          }
+        }
         else {
           this.cartTotal = 0;
+          
+          let userDetailsModal = this.modalCtrl.create('AddPersonalDetailsPage');
+          userDetailsModal.present();
         }
       })
     }
@@ -129,7 +141,7 @@ export class HomePage {
           lng:longitude,
           add:this.geoAddress
         }
-        firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/location/').set(location)
+        firebase.database().ref('users/' + this.globalService.firebaseUid + '/location/').set(location)
       }
 
     })

@@ -9,6 +9,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { CallNumber } from '@ionic-native/call-number';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../providers/global-service/global-service';
 
 var firebaseConfig = {
   apiKey: "AIzaSyAn9HZ9eS9M1gHgHNg4LsgJtbto5oSAPfo",
@@ -40,7 +42,9 @@ firebase.initializeApp(firebaseConfig);
     Geolocation,
     NativeGeocoder,
     CallNumber,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    FirebaseAuthentication,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GlobalServiceProvider
   ]
 })
 export class AppModule {}

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 @IonicPage()
 @Component({
   selector: 'page-history',
@@ -13,16 +15,16 @@ export class HistoryPage {
   allItems={
     current:[],
     complete:[]
-    }
+  }
 
     // NEW ACCEPTED START END
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
   
     loading.present();
-    this.currentUser = firebase.auth().currentUser.uid;
+    this.currentUser = this.globalService.firebaseUid;
     firebase.database().ref('users/' + this.currentUser + '/my_booking/').on('value',(snap)=>{
       if(snap.val()) {
         let allBookings = snap.val();
@@ -58,6 +60,9 @@ export class HistoryPage {
           loading.dismiss();
         }
        
+      }
+      else {
+        loading.dismiss();
       }
     })
   }

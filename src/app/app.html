@@ -5,12 +5,12 @@
           <ion-grid>
               <ion-row>
                   <ion-col col-12 col-sm>
-                      <ion-item no-lines class="headerAvater" text-wrap (click)="gotoProfile()">
+                      <ion-item no-lines class="headerAvater" text-wrap>
                           <ion-avatar item-start>
-                              <img src="../assets/imgs/profile.jpg" style="height:80px;width:80px">
+                            <div id="profileImage" [ngStyle]="{'color': bgColor, 'background': fgColor}">{{prifileImage}}</div>
                           </ion-avatar>
-                          <span class="headerAvaterSpan">Angel Priya</span>
-                          <span class="headerAvaterSpan2">angel@gmail.com</span>
+                          <span class="headerAvaterSpan">{{fullName}}</span>
+                          <span class="headerAvaterSpan2">{{mobileNumber}}</span>
                       </ion-item>
                   </ion-col>
               </ion-row>

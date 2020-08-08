@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 @IonicPage()
 @Component({
   selector: 'page-adress-modal',
@@ -11,7 +13,7 @@ export class AdressModalPage {
   orderData:any;
   saveaddress:any = [];
   price:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public globalService: GlobalServiceProvider) {
     let orderDetails = this.navParams.get('orderData');
     let orderPrice = this.navParams.get('orderPrice');
     if(orderDetails && orderPrice) {
@@ -33,7 +35,7 @@ export class AdressModalPage {
   }
   loadAddressData(){
     console.log('address')
-    let currentUser = firebase.auth().currentUser.uid;
+    let currentUser = this.globalService.firebaseUid;
     if(currentUser) {
       firebase.database().ref('users/' + currentUser + '/saveAddress').once('value',(snap)=>{
         console.log(snap.val());

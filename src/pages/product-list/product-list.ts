@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import * as firebase from 'firebase';
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 
 @IonicPage()
 @Component({
@@ -13,7 +15,7 @@ export class ProductListPage {
   catName: any;
   cartTotal:any;
   image:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public globalService: GlobalServiceProvider) {
     this.image = "https://www.menshairstylestoday.com/wp-content/uploads/2019/02/Short-Fade-Haircut.jpg"
   }
 
@@ -45,7 +47,7 @@ export class ProductListPage {
   }
 
   addToCart(item, index){
-    firebase.database().ref('users/' +firebase.auth().currentUser.uid+ '/cart/').once('value',(snap)=>{
+    firebase.database().ref('users/' +this.globalService.firebaseUid+ '/cart/').once('value',(snap)=>{
       if(snap.val()){
         let allCarts = snap.val();
         var flag = true;
@@ -59,21 +61,21 @@ export class ProductListPage {
         }
         if(flag == false){
           item.serviceFor =  this.allCatDetails.serviceFor
-          firebase.database().ref('users/' +firebase.auth().currentUser.uid+'/cart/').push(item)
+          firebase.database().ref('users/' +this.globalService.firebaseUid+'/cart/').push(item)
           alert('Successfully Added')
         }else{
           alert('Already Added')
         }
       }else{
         item.serviceFor =  this.allCatDetails.serviceFor
-        firebase.database().ref('users/' +firebase.auth().currentUser.uid+'/cart/').push(item)
+        firebase.database().ref('users/' +this.globalService.firebaseUid+'/cart/').push(item)
         alert('Successfully Added')
       }
     })
 }
   
   checkCartItem(){
-    let currentUser = firebase.auth().currentUser.uid;
+    let currentUser = this.globalService.firebaseUid;
     if(currentUser) {
       firebase.database().ref('users/' + currentUser + '/cart/').on('value',(snap)=>{
         let cartProducts = []
