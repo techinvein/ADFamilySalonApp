@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController, LoadingController, ModalController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CallNumber } from '@ionic-native/call-number';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
@@ -14,7 +14,7 @@ export class TrackOrderPage {
   orders:any = [];
   currentUser:any;
   adminMobileNo: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private callNumber: CallNumber, public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController, private callNumber: CallNumber, public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider, public modalCtrl: ModalController) {
     this.currentUser = this.globalService.firebaseUid;
    
     let orderDetails = this.navParams.get('data');
@@ -129,5 +129,15 @@ export class TrackOrderPage {
     this.callNumber.callNumber(this.allDetails.contact_person_mobile, true)
     .then(res => console.log('Launched dialer!', res))
     .catch(err => console.log('Error launching dialer', err));
+  }
+
+  openReviewModal(item) {
+    let reviewModal = this.modalCtrl.create('ReviewModalPage',  { orderData: this.allDetails });
+    reviewModal.onDidDismiss(data => {
+      console.log(data);
+      this.allDetails.rating = data.rating;
+      this.allDetails.review = data.review;
+    });
+    reviewModal.present();
   }
 }

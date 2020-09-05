@@ -1,0 +1,82 @@
+page-review-modal {
+    .rate_experience{
+        padding: 30px 16px 0 16px;
+        margin: 0;
+    
+        h1{
+            margin: 0;
+            padding: 0;
+            color: var(--heading-text-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+        p{
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: capitalize;
+            color: #363636;
+        }
+    }
+    .rating_box{
+        padding: 30px 16px;
+        margin: 0;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: capitalize;
+        color: #363636;
+        ion-col{
+            align-items: center;
+            display: flex;
+            font-weight: 600;
+        }
+            
+    
+        .star{
+            font-size: 22px;
+            color: #B1ADAD;
+        }
+        .text-right{
+            text-align: right;
+        }
+        ion-row{
+            margin-bottom: 15px;
+        }
+    }
+    .add_review{
+        padding: 30px 16px 0 16px;
+        h1{
+            margin: 0;
+            padding: 0;
+            color: var(--heading-text-color);
+            font-weight:600;
+            font-size: 16px;
+        }
+        p{
+            font-size: 14px;
+            line-height: 16px;
+            text-transform: capitalize;
+            color: #363636;
+        }
+    }
+    .review_txtarea{
+        margin: 15px 0;
+        border-top:1px solid rgba(18, 18, 18, 0.2);
+        border-bottom:1px solid rgba(18, 18, 18, 0.2);
+    
+        ion-textarea{
+            background: #fff;
+            height: 128.85px;
+        }
+    }
+    
+    #rating {
+        ion-icon {
+          color: gray;
+      
+          &.filled {
+            color: #ffb400;
+          }
+        }
+    }
+}

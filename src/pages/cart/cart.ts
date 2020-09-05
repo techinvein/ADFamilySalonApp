@@ -5,6 +5,9 @@ import { ActionSheetController } from 'ionic-angular/components/action-sheet/act
 import * as firebase from 'firebase';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
+import { InAppBrowser, InAppBrowserEvent } from '@ionic-native/in-app-browser';
+import { HomePage } from '../home/home';
+import { Http } from '@angular/http';
 
 @IonicPage()
 @Component({
@@ -12,12 +15,12 @@ import { GlobalServiceProvider } from '../../providers/global-service/global-ser
   templateUrl: 'cart.html',
 })
 export class CartPage {
-  payMethod:any = "Cash after Service";
+  payMethod:any = "";
   allCartProducts:any = [];;
   cartTotal: any;
   currentUser: any
 
-  constructor(public navCtrl: NavController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public modalCtrl: ModalController, public globalService: GlobalServiceProvider) {
+  constructor(public navCtrl: NavController,public actionSheetCtrl: ActionSheetController, public navParams: NavParams,public modalCtrl: ModalController, public globalService: GlobalServiceProvider, private iab: InAppBrowser, private http: Http) {
     console.log('ionViewDidLoad CartPage');
     
   }
@@ -77,6 +80,13 @@ export class CartPage {
       title: 'Choose Payment Method',
       buttons: [
         {
+          text: 'Select',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },
+        {
           text: 'Cash after Service',
           role: 'destructive',
           handler: () => {
@@ -84,13 +94,13 @@ export class CartPage {
             console.log('Destructive clicked');
           }
         },
-        // {
-        //   text: 'Online Payment',
-        //   handler: () => {
-        //     this.payMethod = 'Online Payment'
-        //     console.log('Archive clicked');
-        //   }
-        // },
+        {
+          text: 'Online Payment',
+          handler: () => {
+            this.payMethod = 'Online Payment'
+            // this.payWithRazorpay()
+          }
+        },
         {
           text: 'Cancel',
           role: 'cancel',
@@ -104,7 +114,54 @@ export class CartPage {
     actionSheet.present();
   }
   continue(){
-    this.navCtrl.push('AdressModalPage',{orderData:this.allCartProducts,orderPrice:this.cartTotal})
+    if(this.payMethod) {
+      this.navCtrl.push('AdressModalPage',{orderData:this.allCartProducts,orderPrice:this.cartTotal, paymentMethod: this.payMethod})
+    }
+    else {
+      alert("Please select your payment method to continue")
+    }
   }
+
+/////////////////////////////////////////////////
+payWithRazorpay() {
+  var options = {
+    description: 'Credits towards consultation',
+    image: 'https://i.imgur.com/3g7nmJC.png',
+    currency: 'INR',
+    key: 'rzp_test_RRmcFbiJMHpzWZ',
+    amount: '5000',
+    name: 'foo',
+    prefill: {
+      email: 'pranav@razorpay.com',
+      contact: '8879524924',
+      name: 'Pranav Gupta'
+    },
+    theme: {
+      color: '#F37254'
+    },
+    modal: {
+      ondismiss: function() {
+        alert('dismissed')
+      }
+    }
+  };
+
+  var successCallback = (payment_id) => {
+    alert('payment_id: ' + payment_id);
+    //Navigate to another page using the nav controller
+    //this.navCtrl.setRoot(SuccessPage)
+    //Inject the necessary controller to the constructor
+  };
+
+  var cancelCallback = (error) => {
+    alert(error.description + ' (Error ' + error.code + ')');
+    //Navigate to another page using the nav controller
+    //this.navCtrl.setRoot(ErrorPage)
+  };
+
+  RazorpayCheckout.open(options, successCallback, cancelCallback);
+}
+
+
 
 }

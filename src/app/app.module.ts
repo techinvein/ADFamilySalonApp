@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,6 +11,7 @@ import * as firebase from 'firebase';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { CallNumber } from '@ionic-native/call-number';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GlobalServiceProvider } from '../providers/global-service/global-service';
 
 var firebaseConfig = {
@@ -30,6 +32,7 @@ firebase.initializeApp(firebaseConfig);
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -43,6 +46,7 @@ firebase.initializeApp(firebaseConfig);
     NativeGeocoder,
     CallNumber,
     FirebaseAuthentication,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GlobalServiceProvider
   ]

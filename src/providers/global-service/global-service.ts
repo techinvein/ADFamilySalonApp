@@ -10,7 +10,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GlobalServiceProvider {
   firebaseUid: any = "";
-  phoneNumber: any = ""
+  phoneNumber: any = "";
+  pincodes : any = [];
 
   constructor(
     // public http: HttpClient

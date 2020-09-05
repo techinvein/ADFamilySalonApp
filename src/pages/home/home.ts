@@ -65,10 +65,19 @@ export class HomePage {
         }
       }
       this.showDetails = this.alldata.male;
-      this.checkCartItem()
+      this.checkCartItem();
+      this.checkAvailablePincodes()
       console.log(this.alldata)
       //this.getLocation()
       loading.dismiss();
+    })
+  }
+
+  checkAvailablePincodes() {
+    firebase.database().ref('servicePincodes/').once('value',(snap)=>{
+      if(snap.val()) {
+        this.globalService.pincodes = snap.val();
+      }
     })
   }
 

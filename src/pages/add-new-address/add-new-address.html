@@ -18,9 +18,17 @@
             </ion-item>
           </div>
           <div style="width: 90vw; margin: 0 auto;margin-top:4vw">
+            <ion-item no-lines style="background:white">
+              <ion-label>Pin code</ion-label>
+              <ion-select [(ngModel)]="address.Pincode">
+                <ion-option disabled value="">Select</ion-option>
+                <ion-option value="{{pincode}}" *ngFor="let pincode of globalService.pincodes">{{pincode}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <!-- </ion-item>
               <ion-item no-lines style="background:white">
                 <ion-input type="text" placeholder="Pin code"  [(ngModel)]="address.Pincode"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </div>
           
             <div style="width: 90vw; margin: 0 auto;margin-top:4vw">

@@ -49,13 +49,42 @@ export class MyApp {
       // setTimeout(() => {
       //   this.splashScreen.hide();
       // }, 5000);
+
+
+
+      // You need to register an event listener for the `resume` event
+      document.addEventListener('resume', this.onResume, false);
+
       
     });
   }
 
+  onResume(event) {
+    // Re-register the payment success and cancel callbacks
+    RazorpayCheckout.on('payment.success', this.successCallback)
+    RazorpayCheckout.on('payment.cancel', this.cancelCallback)
+    // Pass on the event to RazorpayCheckout
+    RazorpayCheckout.onResume(event);
+  };
+
+  successCallback(payment_id) {
+    alert('payment_id: ' + payment_id);
+    //Navigate to another page using the nav controller
+    //this.navCtrl.setRoot(SuccessPage)
+    //Inject the necessary controller to the constructor
+  };
+
+  cancelCallback(error) {
+    alert(error.description + ' (Error ' + error.code + ')');
+    //Navigate to another page using the nav controller
+    //this.navCtrl.setRoot(ErrorPage)
+  };
+
+  
+
   authenticateUser() {
   
-   //firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
+  //  firebase.auth().signInWithEmailAndPassword("sarghyadeep@gmail.com","Vein9*")
     // firebase.auth().signInWithEmailAndPassword("s@g.com","123456")
     this.firebaseAuthentication.onAuthStateChanged().subscribe((user)=>{
       if(user) {
@@ -82,7 +111,11 @@ export class MyApp {
     // firebase.auth().onAuthStateChanged((user)=>{
     //   if(user) {
     //     console.log(user);
-    //     this.rootPage = "HomePage"
+    //     this.zone.run(()=>{
+    //       this.rootPage = "HomePage";
+    //       this.globalService.firebaseUid = user.uid;
+    //       this.splashScreen.hide();
+    //     })
     //   }
     //   else {
     //     this.rootPage = "PhoneNumberAddPage"

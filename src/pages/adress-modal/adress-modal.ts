@@ -13,9 +13,12 @@ export class AdressModalPage {
   orderData:any;
   saveaddress:any = [];
   price:any;
+  paymentMethod: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController, public globalService: GlobalServiceProvider) {
     let orderDetails = this.navParams.get('orderData');
     let orderPrice = this.navParams.get('orderPrice');
+    this.paymentMethod = this.navParams.get('paymentMethod');
     if(orderDetails && orderPrice) {
       this.orderData = orderDetails;
       this.price = orderPrice
@@ -58,8 +61,8 @@ export class AdressModalPage {
       orderAddres:address,
       orderPrice:this.price
     }
-    let slotModal = this.modalCtrl.create('SlotBookingPage',  { orderData: allData });
-        slotModal.present();
+    let slotModal = this.modalCtrl.create('SlotBookingPage',  { orderData: allData, paymentMethod: this.paymentMethod });
+    slotModal.present();
   }
 
 }

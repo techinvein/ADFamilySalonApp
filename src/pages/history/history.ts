@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController, ModalController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
@@ -18,7 +18,7 @@ export class HistoryPage {
   }
 
     // NEW ACCEPTED START END
-  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController, public globalService: GlobalServiceProvider, public modalCtrl: ModalController,) {
     let loading = this.loadingCtrl.create({
       content: 'Please wait...'
     });
@@ -50,13 +50,19 @@ export class HistoryPage {
             current.push(allBookings[key])
           }
         }
+        console.log(this.allItems, current, complete)
         if(current){
-          this.showableData = current.reverse();
+          if(this.ordersegment == "current") {
+            this.showableData = current.reverse();
+          }
           this.allItems.current = current
           loading.dismiss();
         }
         if(complete){
-          this.allItems.complete = complete.reverse()
+          this.allItems.complete = complete.reverse();
+          if(this.ordersegment == "complete") {
+            this.showableData = this.allItems.complete;
+          }
           loading.dismiss();
         }
        
@@ -85,5 +91,14 @@ export class HistoryPage {
   }
   checkout(){
     this.navCtrl.push("CartPage");
+  }
+
+  openReviewModal(item) {
+    let reviewModal = this.modalCtrl.create('ReviewModalPage',  { orderData: item });
+    reviewModal.present();
+  }
+
+  openThankYouForFeedbackModal() {
+    
   }
 }

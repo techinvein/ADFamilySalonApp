@@ -33,6 +33,7 @@
               </div>
               <div class="div-two">
                     <div class="div-two-second" (click)="trackOrder(item)"> View Details</div>
+                    <div class="div-two-second" (click)="openReviewModal(item)" *ngIf="item.bookingStatus === 'END' && !item.rating"> Write a Review</div>
                     <div><ion-badge class="{{item?.bookingStatus == 'CANCEL' || item?.bookingStatus == 'END' ? 'badge-complete' : 'badge-other'}}">
                       {{item.bookingStatus}}
                       </ion-badge></div>
