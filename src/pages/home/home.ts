@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController,LoadingController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController,LoadingController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
@@ -24,7 +24,10 @@ export class HomePage {
     maxResults: 5
   };
   banners:any = [];
-  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation, public globalService: GlobalServiceProvider, public modalCtrl: ModalController) {
+
+  firebasePlugin: any;
+
+  constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public navParams: NavParams,private nativeGeocoder: NativeGeocoder,private geolocation: Geolocation, public globalService: GlobalServiceProvider, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     this.alldata = {
       male: [],
       female: []
@@ -70,8 +73,36 @@ export class HomePage {
       console.log(this.alldata)
       //this.getLocation()
       loading.dismiss();
-    })
+    });
+
+    this.firebasePlugin = (<any>window).FirebasePlugin;
+    this.firebasePlugin.onMessageReceived(this.onMessageReceived.bind(this));
+    this.getToken();
   }
+
+  //////////////////////////// push notification code start ////////////////////////
+  getToken() {
+    let currentUser = this.globalService.firebaseUid;
+    this.firebasePlugin.getToken(token => {
+      let data = {
+        fcmToken: token
+      }
+      firebase.database().ref('users/' + currentUser + '/').update(data).then(()=>{
+      })
+    });
+  }
+
+  onMessageReceived(message){
+    if (message.tap) { console.log(`Notification was tapped in the ${message.tap}`); }
+
+    const alert = this.alertCtrl.create({
+      title: 'Message received',
+      subTitle: JSON.stringify(message),
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+  //////////////////////////// push notification code end ////////////////////////
 
   checkAvailablePincodes() {
     firebase.database().ref('servicePincodes/').once('value',(snap)=>{
